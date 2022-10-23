@@ -1,13 +1,13 @@
 package logica;
 
-public class Album {
+public class Albumn {
 	
 	private boolean[] figuritas; 
 	private int[] repetidas;
 	private int cantFiguritas;
 	
 	
-	public Album(int cantFiguritas) {;
+	public Albumn(int cantFiguritas) {;
 		this.figuritas = new boolean[cantFiguritas];
 		this.repetidas = new int[cantFiguritas];
 		this.cantFiguritas = cantFiguritas;
