@@ -1,18 +1,18 @@
 package interfaz;
 
 import java.awt.EventQueue;
-import java.awt.Frame;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
+
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,9 +22,9 @@ public class Menu {
 
 	private JFrame frame;
 	private JPanel panel;
-	private JLabel Imagen;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JButton btnNewButton;
+
+	
 
 	/**
 	 * Launch the application.
@@ -53,8 +53,15 @@ public class Menu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		crearMenu();
+		 
+		eventoBotonIniciar();
 		
-		crearFrame();
+		
+
+	}
+	private void crearMenu(){
+       crearFrame();
 		
 		crearPanel();
 		
@@ -63,9 +70,7 @@ public class Menu {
 		crearbotonDeIniciar();
 		
 		crearcombobox();
-
 	}
-	
 	private void crearFrame() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 639, 457);
@@ -101,12 +106,21 @@ public class Menu {
 		
 	}
 	private void crearbotonDeIniciar() {
-		JButton btnNewButton = new JButton("Iniciar Simulación");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton = new JButton("Iniciar Simulación");
 		btnNewButton.setBounds(217, 353, 234, 44);
 		panel.add(btnNewButton);
 	}
+	
+	private void eventoBotonIniciar() {
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new SimuladorInterface();
+				frame.setVisible(false);
+
+			}
+		});
+
+	}
+	
 }

@@ -11,7 +11,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
-public class Simulador {
+public class SimuladorInterface {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -26,7 +26,7 @@ public class Simulador {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Simulador window = new Simulador();
+					SimuladorInterface window = new SimuladorInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class Simulador {
 	/**
 	 * Create the application.
 	 */
-	public Simulador() {
+	public SimuladorInterface() {
 		initialize();
 	}
 
@@ -46,21 +46,21 @@ public class Simulador {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		crearFrame();
+		
+		crearPanel();
+		
+		crearSelecciondecantidades();
+		
+		crearbotonSimular();
+	}
+	private void crearFrame() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 873, 476);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		crearPanel();
 	}
 	
-	private void crearPanel() {
-		panel = new JPanel();
-		panel.setForeground(new Color(255, 255, 255));
-		panel.setBackground(new Color(138, 0, 0));
-		panel.setBounds(10, 10, 604, 497);
-		panel.setLayout(null);
-		frame.getContentPane().add(panel);
-		
+	private void crearSelecciondecantidades() {
 		JLabel lblNewLabel = new JLabel("Cantidad de usuarios:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Sitka Text", Font.PLAIN, 14));
@@ -93,10 +93,21 @@ public class Simulador {
 		textField_2.setColumns(10);
 		textField_2.setBounds(750, 31, 28, 20);
 		panel.add(textField_2);
-		
-		JButton btnNewButton = new JButton("Simular");
-		btnNewButton.setFont(new Font("Sitka Subheading", Font.BOLD, 17));
-		btnNewButton.setBounds(352, 342, 160, 36);
-		panel.add(btnNewButton);
 	}
+	
+	private void crearPanel() {
+		panel = new JPanel();
+		panel.setForeground(new Color(255, 255, 255));
+		panel.setBackground(new Color(138, 0, 0));
+		panel.setBounds(10, 10, 604, 497);
+		panel.setLayout(null);
+		frame.getContentPane().add(panel);
+		
+	}
+	 public void crearbotonSimular() {
+		 JButton btnNewButton = new JButton("Simular");
+			btnNewButton.setFont(new Font("Sitka Subheading", Font.BOLD, 17));
+			btnNewButton.setBounds(352, 342, 160, 36);
+			panel.add(btnNewButton);
+	 }
 }
