@@ -1,12 +1,30 @@
 package interfaz;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Menu {
 
 	private JFrame frame;
+	private JPanel panel;
+	private JLabel Imagen;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -36,8 +54,43 @@ public class Menu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 840, 503);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panel = new JPanel();
+		panel.setForeground(new Color(255, 255, 255));
+		panel.setBackground(new Color(128, 0, 0));
+		panel.setBounds(10, 10, 604, 497);
+		panel.setLayout(null);
+		frame.getContentPane().add(panel);
+		
+		JLabel lblNewLabel = new JLabel("FIFA World Cup");
+		lblNewLabel.setFont(new Font("Cooper Black", Font.PLAIN, 25));
+		lblNewLabel.setBounds(286, 11, 234, 72);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Qatar 2022");
+		lblNewLabel_1.setFont(new Font("Cooper Black", Font.PLAIN, 22));
+		lblNewLabel_1.setBounds(336, 54, 162, 72);
+		panel.add(lblNewLabel_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(286, 137, 239, 22);
+		panel.add(comboBox);
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario", "N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
+		
+		JButton btnNewButton = new JButton("Iniciar Simulación");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(291, 354, 234, 44);
+		panel.add(btnNewButton);
+		
+		
+//		Imagen = new JLabel();
+//		Imagen.setIcon(new ImageIcon(Menu.class.getResource("img/albummundial4.jpg.webp")));
+//		Imagen.setBounds(-67, -46, 1108, 530);
+//		frame.getContentPane().add(Imagen);
 	}
-
 }
