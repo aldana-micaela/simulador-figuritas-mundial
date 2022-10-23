@@ -74,7 +74,7 @@ public class Menu {
 		lblNewLabel_1.setBounds(336, 54, 162, 72);
 		panel.add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(286, 137, 239, 22);
 		panel.add(comboBox);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario", "N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
@@ -88,9 +88,6 @@ public class Menu {
 		panel.add(btnNewButton);
 		
 		
-//		Imagen = new JLabel();
-//		Imagen.setIcon(new ImageIcon(Menu.class.getResource("img/albummundial4.jpg.webp")));
-//		Imagen.setBounds(-67, -46, 1108, 530);
-//		frame.getContentPane().add(Imagen);
+
 	}
 }
