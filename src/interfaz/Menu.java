@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 
 import javax.swing.DefaultComboBoxModel;
-
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 
 import java.awt.Font;
@@ -23,6 +23,7 @@ public class Menu {
 	private JFrame frame;
 	private JPanel panel;
 	private JButton btnNewButton;
+	private JLabel Imagen;
 
 	
 
@@ -56,7 +57,6 @@ public class Menu {
 		crearMenu();
 		 
 		eventoBotonIniciar();
-		
 		
 
 	}
@@ -111,12 +111,19 @@ public class Menu {
 		panel.add(btnNewButton);
 	}
 	
+//	private void ponerImagenDeFondo() {
+//		Imagen = new JLabel();
+//		Imagen.setIcon(new ImageIcon(Menu.class.getResource("Simulador/src/img/WhatsApp%20Image%202022-10-23%20at%2017.41.51.jpeg")));
+//		Imagen.setBounds(-67, -46, 1108, 530);
+//		frame.getContentPane().add(Imagen);
+//
+//	}
 	private void eventoBotonIniciar() {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				new SimuladorInterface();
-				frame.setVisible(false);
+
+			new SimuladorInterface();	
+//				frame.setVisible(false);
 
 			}
 		});
