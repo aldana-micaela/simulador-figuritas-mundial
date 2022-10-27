@@ -2,10 +2,11 @@ package interfaz;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import java.awt.Color;
 
@@ -24,12 +25,20 @@ public class Menu {
 	private JPanel panel;
 	private JButton btnNewButton;
 	private JLabel Imagen;
-
+	private JLabel txtFifa;
+	private JLabel txtQatar;
+	private JComboBox<String> comboBox;
 	
+	
+	private JLabel txtCantUsuarios;
+	private JTextField cantidadFiguritasXPaquete;
+	private JLabel txtCantidadFiguritasXPaquete;
+	private JTextField cantidadFiguritasTotal;
+	private JLabel txtCantidadFiguritasTotal;
+	private JTextField cantidadUsuarios;
+	private int simulador;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,36 +52,44 @@ public class Menu {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Menu() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		crearMenu();
-		 
-		eventoBotonIniciar();
-		
 
 	}
-	private void crearMenu(){
+
+	private void crearMenu() {
 		crearFrame();
 		crearPanel();
 		crearLabels();
+		
+		crearSeleccionCantidades();
+		
 		crearbotonDeIniciar();
 		crearcombobox();
+		
+		getSimuladorSeleccionado();
+
+		eventoBotonIniciar();
+
 	}
+
 	private void crearFrame() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 639, 457);
+		frame.setBounds(450, 150, 639, 457);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Simulador");
 	}
-	
+
 	private void crearPanel() {
 		panel = new JPanel();
 		panel.setForeground(new Color(255, 255, 255));
@@ -81,32 +98,35 @@ public class Menu {
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
 	}
+
 	private void crearLabels() {
-		JLabel lblNewLabel = new JLabel("FIFA World Cup");
-		lblNewLabel.setFont(new Font("Cooper Black", Font.PLAIN, 25));
-		lblNewLabel.setBounds(200, 11, 234, 72);
-		panel.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Qatar 2022");
-		lblNewLabel_1.setFont(new Font("Cooper Black", Font.PLAIN, 22));
-		lblNewLabel_1.setBounds(238, 54, 162, 72);
-		panel.add(lblNewLabel_1);
-		
+		txtFifa = new JLabel("Simulador FIFA World Cup");
+		txtFifa.setFont(new Font("Cooper Black", Font.PLAIN, 25));
+		txtFifa.setBounds(129, 10, 395, 72);
+		panel.add(txtFifa);
+
+		txtQatar = new JLabel("Qatar 2022");
+		txtQatar.setFont(new Font("Cooper Black", Font.PLAIN, 22));
+		txtQatar.setBounds(238, 54, 162, 72);
+		panel.add(txtQatar);
+
 	}
-	
+
 	private void crearcombobox() {
-		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		comboBox.setBounds(212, 138, 239, 22);
 		panel.add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario", "N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Un solo usuario",
+				"N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
 		
 	}
+
 	private void crearbotonDeIniciar() {
-		btnNewButton = new JButton("Iniciar Simulación");
-		btnNewButton.setBounds(217, 353, 234, 44);
+		btnNewButton = new JButton("Iniciar Simulador");
+		btnNewButton.setBounds(201, 353, 234, 44);
 		panel.add(btnNewButton);
 	}
-	
+
 //	private void ponerImagenDeFondo() {
 //		Imagen = new JLabel();
 //		Imagen.setIcon(new ImageIcon(Menu.class.getResource("Simulador/src/img/WhatsApp%20Image%202022-10-23%20at%2017.41.51.jpeg")));
@@ -118,12 +138,67 @@ public class Menu {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-			new SimuladorInterface();	
-//				frame.setVisible(false);
+				int cantUsuarios=Integer.parseInt(cantidadUsuarios.getText());
+				int cantFiguritasXpaquete=Integer.parseInt(cantidadFiguritasXPaquete.getText()) ;
+				int cantFiguritas= Integer.parseInt(cantidadFiguritasTotal.getText());
+				
+				//if (cantidadUsuarios)
+				
+				
+				new SimuladorInterface();
+				frame.setVisible(false);
+				
 
 			}
 		});
 
 	}
+
 	
+	private void crearSeleccionCantidades() {
+		txtCantUsuarios = new JLabel("Cantidad de usuarios:");
+		txtCantUsuarios.setForeground(new Color(255, 255, 255));
+		txtCantUsuarios.setFont(new Font("Sitka Text", Font.PLAIN, 14));
+		txtCantUsuarios.setBounds(10, 205, 147, 22);
+		panel.add(txtCantUsuarios);
+		
+		cantidadUsuarios = new JTextField();
+		cantidadUsuarios.setColumns(10);
+		cantidadUsuarios.setBounds(270, 205, 28, 20);
+		panel.add(cantidadUsuarios);
+		
+		
+		txtCantidadFiguritasTotal = new JLabel("Cantidad total de figuritas del album:");
+		txtCantidadFiguritasTotal.setForeground(Color.WHITE);
+		txtCantidadFiguritasTotal.setFont(new Font("Sitka Text", Font.PLAIN, 14));
+		txtCantidadFiguritasTotal.setBounds(10, 273, 247, 22);
+		panel.add(txtCantidadFiguritasTotal);
+		
+		cantidadFiguritasTotal = new JTextField();
+		cantidadFiguritasTotal.setColumns(10);
+		cantidadFiguritasTotal.setBounds(270, 273, 28, 20);
+		panel.add(cantidadFiguritasTotal);
+		
+		txtCantidadFiguritasXPaquete = new JLabel("Cantidad de figuritas por paquete:");
+		txtCantidadFiguritasXPaquete.setForeground(Color.WHITE);
+		txtCantidadFiguritasXPaquete.setFont(new Font("Sitka Text", Font.PLAIN, 14));
+		txtCantidadFiguritasXPaquete.setBounds(10, 237, 247, 22);
+		panel.add(txtCantidadFiguritasXPaquete);
+		
+		cantidadFiguritasXPaquete = new JTextField();
+		cantidadFiguritasXPaquete.setBounds(270, 237, 28, 20);
+		panel.add(cantidadFiguritasXPaquete);
+		cantidadFiguritasXPaquete.setColumns(10);
+		
+
+	}
+	
+	
+	private void getSimuladorSeleccionado() {
+		simulador= comboBox.getSelectedIndex();
+		if(simulador==0) {
+			cantidadUsuarios.setText("1");
+			//cantidadUsuarios.setEnabled(false);
+		}
+	}
 }

@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -16,9 +17,7 @@ public class SimuladorInterface {
 
 	private JFrame frame;
 	private JPanel panel;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+
 
 	/**
 	 * Launch the application.
@@ -40,6 +39,11 @@ public class SimuladorInterface {
 	 * Create the application.
 	 */
 	public SimuladorInterface() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		initialize();
 	}
 
@@ -50,56 +54,22 @@ public class SimuladorInterface {
 		crearFrame();
 		
 		crearPanel();
-		
-		crearSelecciondecantidades();
-		
+				
 		crearbotonSimular();
 	}
 	private void crearFrame() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 873, 476);
+		frame.setBounds(450, 150, 639, 457);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Simulador");
+		frame.setVisible(true);
 	}
 	
-	private void crearSelecciondecantidades() {
-		JLabel lblNewLabel = new JLabel("Cantidad de usuarios:");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Sitka Text", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 32, 147, 22);
-		panel.add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(167, 31, 28, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblCantidadDeFiguritas = new JLabel("Cantidad de figuritas por paquete:");
-		lblCantidadDeFiguritas.setForeground(Color.WHITE);
-		lblCantidadDeFiguritas.setFont(new Font("Sitka Text", Font.PLAIN, 14));
-		lblCantidadDeFiguritas.setBounds(220, 32, 225, 22);
-		panel.add(lblCantidadDeFiguritas);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(455, 31, 28, 20);
-		panel.add(textField_1);
-		
-		JLabel lblCantidadDeSimulaciones = new JLabel("Cantidad de simulaciones a realizar:");
-		lblCantidadDeSimulaciones.setForeground(Color.WHITE);
-		lblCantidadDeSimulaciones.setFont(new Font("Sitka Text", Font.PLAIN, 14));
-		lblCantidadDeSimulaciones.setBounds(493, 32, 247, 22);
-		panel.add(lblCantidadDeSimulaciones);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(750, 31, 28, 20);
-		panel.add(textField_2);
-	}
 	
 	private void crearPanel() {
 		panel = new JPanel();
 		panel.setForeground(new Color(255, 255, 255));
-		panel.setBackground(new Color(138, 0, 0));
+		panel.setBackground(new Color(128, 0, 0));
 		panel.setBounds(10, 10, 604, 497);
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
