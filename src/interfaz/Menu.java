@@ -8,6 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import codigoNegocio.Instancia;
+import codigoNegocio.Simulador;
+import escenarios.Escenario1;
+import generador.GeneradorRandom;
+import observador.Observador;
+import observador.ObservadorPorInterfaz;
+
 import java.awt.Color;
 
 import javax.swing.DefaultComboBoxModel;
@@ -144,7 +151,6 @@ public class Menu {
 				
 				//if (cantidadUsuarios)
 				
-				
 				new SimuladorInterface();
 				frame.setVisible(false);
 				
@@ -153,6 +159,8 @@ public class Menu {
 		});
 
 	}
+	
+
 
 	
 	private void crearSeleccionCantidades() {

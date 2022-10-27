@@ -28,18 +28,7 @@ public class Escenario1 implements Escenario {
 
 	@Override
 	public void simular(Usuario u, Generador g) {
-		int iteracion = 0;
-
-		while (!u.estaCompleto()) {
-
-			generarPaquete(u, g);
-
-			System.out.print("Paquete: " + iteracion);
-			System.out.print(" figuritasAcertadas: " + u.getFiguritasAcertadas() + "/" + u.getCantFiguritas());
-			System.out.println();
-
-			iteracion++;
-		}
+		generarPaquete(u, g);
 
 	}
 
