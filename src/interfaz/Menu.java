@@ -61,14 +61,10 @@ public class Menu {
 
 	}
 	private void crearMenu(){
-       crearFrame();
-		
+		crearFrame();
 		crearPanel();
-		
 		crearLabels();
-		
 		crearbotonDeIniciar();
-		
 		crearcombobox();
 	}
 	private void crearFrame() {
