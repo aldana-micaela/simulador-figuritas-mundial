@@ -1,9 +1,9 @@
-package simulador;
+package escenarios;
 
 import codigoNegocio.Usuario;
 import generador.Generador;
 
-public class Simulador2 implements Simulador {
+public class Escenario2 implements Escenario {
 
 	@Override
 	public void simular(Usuario u, Generador g) {

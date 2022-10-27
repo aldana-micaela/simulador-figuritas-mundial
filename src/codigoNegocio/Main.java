@@ -1,17 +1,16 @@
 package codigoNegocio;
 
+import escenarios.Escenario1;
 import generador.GeneradorRandom;
-import simulador.Simulador1;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Instancia inst= new Instancia (638, 5, new Simulador1());
-		Usuario user = new Usuario(inst);
-		Solucion s= new Solucion (inst, new GeneradorRandom());
+		Instancia inst= new Instancia (638, 5, new Escenario1());
+		Simulador s= new Simulador (inst, new GeneradorRandom());
 		
-		s.simular(user);
+		s.simular();
 	}
 
 }

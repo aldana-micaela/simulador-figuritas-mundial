@@ -1,9 +1,9 @@
-package simulador;
+package escenarios;
 
 import codigoNegocio.Usuario;
 import generador.Generador;
 
-public interface Simulador {
+public interface Escenario {
 	
 	
 	public void simular(Usuario u, Generador g);

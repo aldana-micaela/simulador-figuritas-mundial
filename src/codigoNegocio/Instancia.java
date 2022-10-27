@@ -2,23 +2,29 @@ package codigoNegocio;
 
 import java.util.ArrayList;
 
-import simulador.Simulador;
+import escenarios.Escenario;
 
 public class Instancia {
 	
 	private int cantFiguritas;
 	private int cantFiguritasXPaquete; 
-	private Simulador simulador;
+	private Escenario simulador;
 	private int cantUsuarios;
 	
 	private ArrayList<Usuario> users;
 	
 	
-	public Instancia (int cantFiguritas, int figuritasXPaquete, Simulador simulacion) {
+	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario simulacion) {
 		this.cantFiguritas=cantFiguritas;
 		this.cantFiguritasXPaquete=figuritasXPaquete;
 		this.simulador = simulacion;
 		this.cantUsuarios= simulador.getCantUsuarios();
+		
+		users = new ArrayList<Usuario>(cantUsuarios);
+		
+		for(int i =0; i<cantUsuarios; i++)
+			users.add(new Usuario(this));
+		
 	}
 
 	public int getCantFiguritas() {
@@ -29,8 +35,12 @@ public class Instancia {
 		return cantFiguritasXPaquete;
 	}
 
-	public Simulador getSimulador() {
+	public Escenario getSimulador() {
 		return simulador;
+	}
+	
+	public Usuario getUsers() {
+		return users.get(0);
 	}
 
 	
