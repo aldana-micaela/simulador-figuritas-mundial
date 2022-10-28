@@ -1,17 +1,21 @@
 package observador;
 
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import codigoNegocio.Simulador;
 
-public class ObservadorPorInterfaz implements Observador{
-	
+public class ObservadorPorInterfaz implements Observador {
+
 	private Simulador simulador;
-	
-	private String observador;
-	
-	public ObservadorPorInterfaz(Simulador s) {
-		this.simulador= s;
+
+	private JLabel label;
+	private JProgressBar barra;
+
+	public ObservadorPorInterfaz(Simulador s, JLabel label, JProgressBar barra) {
+		this.simulador = s;
+		this.label = label;
+		this.barra = barra;
 	}
 
 	@Override
@@ -19,14 +23,16 @@ public class ObservadorPorInterfaz implements Observador{
 		System.out.print("Paquete: " + simulador.getIteracion());
 		System.out.print(" figuritasAcertadas: " + simulador.getUsuario().getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
 		System.out.println();
-		
-		observador = ("Paquete: " + simulador.getIteracion() + " Figuritas acertadas: "
+
+		barra.setMaximum(simulador.getCantFiguritas());
+		barra.setMinimum(0);
+
+		label.setText("Paquete: " + simulador.getIteracion() + " Figuritas acertadas: "
 				+ simulador.getUsuario().getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
 
-	}
-	
-	public String getObservador() {
-		return observador;
+
+		barra.setValue(simulador.getUsuario().getFiguritasAcertadas());
+
 	}
 
 }

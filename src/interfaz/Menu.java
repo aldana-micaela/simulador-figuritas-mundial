@@ -8,12 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import codigoNegocio.Instancia;
-import codigoNegocio.Simulador;
+import escenarios.Escenario;
 import escenarios.Escenario1;
-import generador.GeneradorRandom;
-import observador.Observador;
-import observador.ObservadorPorInterfaz;
+import escenarios.Escenario2;
+import escenarios.Escenario3;
 
 import java.awt.Color;
 
@@ -35,16 +33,13 @@ public class Menu {
 	private JLabel txtFifa;
 	private JLabel txtQatar;
 	private JComboBox<String> comboBox;
-	
-	
+
 	private JLabel txtCantUsuarios;
 	private JTextField cantidadFiguritasXPaquete;
 	private JLabel txtCantidadFiguritasXPaquete;
 	private JTextField cantidadFiguritasTotal;
 	private JLabel txtCantidadFiguritasTotal;
 	private JTextField cantidadUsuarios;
-	private int simulador;
-
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -68,7 +63,6 @@ public class Menu {
 		initialize();
 	}
 
-
 	private void initialize() {
 		crearMenu();
 
@@ -78,13 +72,11 @@ public class Menu {
 		crearFrame();
 		crearPanel();
 		crearLabels();
-		
+
 		crearSeleccionCantidades();
-		
+
 		crearbotonDeIniciar();
 		crearcombobox();
-		
-		getSimuladorSeleccionado();
 
 		eventoBotonIniciar();
 
@@ -123,9 +115,9 @@ public class Menu {
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(212, 138, 239, 22);
 		panel.add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Un solo usuario",
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario",
 				"N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
-		
+
 	}
 
 	private void crearbotonDeIniciar() {
@@ -145,68 +137,82 @@ public class Menu {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int cantUsuarios=Integer.parseInt(cantidadUsuarios.getText());
-				int cantFiguritasXpaquete=Integer.parseInt(cantidadFiguritasXPaquete.getText()) ;
-				int cantFiguritas= Integer.parseInt(cantidadFiguritasTotal.getText());
-				
-				//if (cantidadUsuarios)
-				
-				new SimuladorInterface();
+			//	int cantUsuarios = Integer.parseInt(cantidadUsuarios.getText());
+				int cantFiguritasXpaquete = getCantFiguritasXPaquete();
+				int cantFiguritas = getCantFiguritas();
+
+				Escenario escenario = getEscenario();
+
+				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario);
 				frame.setVisible(false);
-				
 
 			}
+
 		});
 
 	}
-	
 
-
-	
 	private void crearSeleccionCantidades() {
 		txtCantUsuarios = new JLabel("Cantidad de usuarios:");
 		txtCantUsuarios.setForeground(new Color(255, 255, 255));
 		txtCantUsuarios.setFont(new Font("Sitka Text", Font.PLAIN, 14));
 		txtCantUsuarios.setBounds(10, 205, 147, 22);
 		panel.add(txtCantUsuarios);
-		
+
 		cantidadUsuarios = new JTextField();
 		cantidadUsuarios.setColumns(10);
 		cantidadUsuarios.setBounds(270, 205, 28, 20);
 		panel.add(cantidadUsuarios);
-		
-		
+
 		txtCantidadFiguritasTotal = new JLabel("Cantidad total de figuritas del album:");
 		txtCantidadFiguritasTotal.setForeground(Color.WHITE);
 		txtCantidadFiguritasTotal.setFont(new Font("Sitka Text", Font.PLAIN, 14));
-		txtCantidadFiguritasTotal.setBounds(10, 273, 247, 22);
+		txtCantidadFiguritasTotal.setBounds(10, 237, 253, 22);
 		panel.add(txtCantidadFiguritasTotal);
-		
+
 		cantidadFiguritasTotal = new JTextField();
 		cantidadFiguritasTotal.setColumns(10);
-		cantidadFiguritasTotal.setBounds(270, 273, 28, 20);
+		cantidadFiguritasTotal.setBounds(270, 237, 28, 20);
 		panel.add(cantidadFiguritasTotal);
-		
+
 		txtCantidadFiguritasXPaquete = new JLabel("Cantidad de figuritas por paquete:");
 		txtCantidadFiguritasXPaquete.setForeground(Color.WHITE);
 		txtCantidadFiguritasXPaquete.setFont(new Font("Sitka Text", Font.PLAIN, 14));
-		txtCantidadFiguritasXPaquete.setBounds(10, 237, 247, 22);
+		txtCantidadFiguritasXPaquete.setBounds(10, 269, 247, 22);
 		panel.add(txtCantidadFiguritasXPaquete);
-		
+
 		cantidadFiguritasXPaquete = new JTextField();
-		cantidadFiguritasXPaquete.setBounds(270, 237, 28, 20);
+		cantidadFiguritasXPaquete.setBounds(270, 269, 28, 20);
 		panel.add(cantidadFiguritasXPaquete);
 		cantidadFiguritasXPaquete.setColumns(10);
-		
 
 	}
-	
-	
-	private void getSimuladorSeleccionado() {
-		simulador= comboBox.getSelectedIndex();
-		if(simulador==0) {
-			cantidadUsuarios.setText("1");
-			//cantidadUsuarios.setEnabled(false);
-		}
+
+
+	public Escenario getEscenario() {
+		
+		Escenario escenario;
+		if (getEscenarioSeleccionado() == 0)
+			escenario = new Escenario1();
+		else if (getEscenarioSeleccionado() == 1)
+			escenario = new Escenario2();
+		else
+			escenario = new Escenario3();
+		return escenario;
 	}
+	
+	private int getEscenarioSeleccionado() {
+		return comboBox.getSelectedIndex();
+	}
+
+	public int getCantFiguritas() {
+		int cantFiguritas = Integer.parseInt(cantidadFiguritasTotal.getText());
+		return cantFiguritas;
+	}
+
+	public int getCantFiguritasXPaquete() {
+		int cantFiguritasXpaquete = Integer.parseInt(cantidadFiguritasXPaquete.getText());
+		return cantFiguritasXpaquete;
+	}
+
 }

@@ -6,11 +6,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 import codigoNegocio.Instancia;
 import codigoNegocio.Simulador;
+import escenarios.Escenario;
 import escenarios.Escenario1;
 import generador.GeneradorRandom;
 import observador.Observador;
@@ -19,18 +22,26 @@ import observador.ObservadorPorInterfaz;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class SimuladorInterface {
+public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private JFrame frame;
 	private JPanel panel;
 	
-	
+	private int cantFiguritas;
+	private int cantFiguritasXPaquete;
+	private Escenario escenario;
+
 	private Simulador simulador;
 	private JLabel txtObservador;
 	private Instancia instancia;
-	private ObservadorPorInterfaz observador;
+
+	private JProgressBar progressBar;
+	private Observador observador;
 	
+	private static Menu menu;
 
 	/**
 	 * Launch the application.
@@ -39,7 +50,10 @@ public class SimuladorInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SimuladorInterface window = new SimuladorInterface();
+					
+					menu = new Menu();
+					
+					SimuladorInterface window = new SimuladorInterface(menu.getCantFiguritas(), menu.getCantFiguritasXPaquete(), menu.getEscenario());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,12 +65,17 @@ public class SimuladorInterface {
 	/**
 	 * Create the application.
 	 */
-	public SimuladorInterface() {
+	public SimuladorInterface(int cantFiguritas, int cantFiguritasXPaquete, Escenario escenario) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		this.cantFiguritas=cantFiguritas;
+		this.cantFiguritasXPaquete=cantFiguritasXPaquete;
+		this.escenario=escenario;
+		
 		initialize();
 	}
 
@@ -66,8 +85,12 @@ public class SimuladorInterface {
 	private void initialize() {
 		crearFrame();
 		crearPanel();
-		inicializarEscenario1();
-		
+		crearTextoDeEstadisticas();
+		crearBarraProgreso();
+		inicializarEscenario();
+		execute();
+//		crearBtnSimular();
+
 	}
 
 	private void crearFrame() {
@@ -88,31 +111,49 @@ public class SimuladorInterface {
 
 	}
 
-	private void inicializarEscenario1() {
-		instancia = new Instancia(6380, 5, new Escenario1());
+	private void inicializarEscenario() {
+		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario);
 		simulador = new Simulador(instancia, new GeneradorRandom());
-		observador = new ObservadorPorInterfaz(simulador);
+		observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
 		simulador.registrarObservador(observador);
-		simulador.simular();		
-		
-		estadisticas();
-		txtObservador.setText(observador.getObservador());
 
 	}
 
+//	public void crearBtnSimular() {
+//
+//		JButton btnNewButton = new JButton("New button");
+//		btnNewButton.setBounds(172, 343, 243, 40);
+//		panel.add(btnNewButton);
+//
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//
+//				execute();
+//
+//			}
+//		});
+//	}
 
-	public void estadisticas() {
-		txtObservador= new JLabel();
-		txtObservador.setText(observador.getObservador());
-		txtObservador.setBounds(100, 205, 600, 40);
+	public void crearTextoDeEstadisticas() {
+		txtObservador = new JLabel();
+		txtObservador.setBounds(15, 247, 600, 40);
 		panel.add(txtObservador);
 
 	}
-	
-//	public void crearbotonSimular() {
-//		JButton btnNewButton = new JButton("Simular");
-//		btnNewButton.setFont(new Font("Sitka Subheading", Font.BOLD, 17));
-//		btnNewButton.setBounds(352, 342, 160, 36);
-//		panel.add(btnNewButton);
-//	}
+
+	public void crearBarraProgreso() {
+		progressBar = new JProgressBar();
+		progressBar = new JProgressBar();
+		progressBar.setBounds(15, 153, 600, 40);
+		panel.add(progressBar);
+
+	}
+
+	@Override
+	protected Integer doInBackground() throws Exception {
+
+		simulador.start();
+
+		return null;
+	}
 }
