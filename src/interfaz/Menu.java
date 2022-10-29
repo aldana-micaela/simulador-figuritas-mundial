@@ -137,7 +137,6 @@ public class Menu {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-			//	int cantUsuarios = Integer.parseInt(cantidadUsuarios.getText());
 				int cantFiguritasXpaquete = getCantFiguritasXPaquete();
 				int cantFiguritas = getCantFiguritas();
 
@@ -147,6 +146,7 @@ public class Menu {
 				frame.setVisible(false);
 
 			}
+
 
 		});
 
@@ -195,9 +195,9 @@ public class Menu {
 		if (getEscenarioSeleccionado() == 0)
 			escenario = new Escenario1();
 		else if (getEscenarioSeleccionado() == 1)
-			escenario = new Escenario2(2);
+			escenario = new Escenario2(getCantUsuarios());
 		else
-			escenario = new Escenario3(3);
+			escenario = new Escenario3(getCantUsuarios());
 		return escenario;
 	}
 	
@@ -215,4 +215,10 @@ public class Menu {
 		return cantFiguritasXpaquete;
 	}
 
+	private int getCantUsuarios() {
+		return Integer.parseInt(cantidadUsuarios.getText());
+	}
+	
+	
+	
 }

@@ -27,8 +27,7 @@ public class Escenario2 implements Escenario {
 
 	@Override
 	public int getCantUsuarios() {
-		// TODO Auto-generated method stub
-		return 0;
+		return cantUsuarios;
 	}
 
 	@Override
