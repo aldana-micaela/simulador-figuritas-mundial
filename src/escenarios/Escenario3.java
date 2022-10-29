@@ -4,6 +4,13 @@ import codigoNegocio.Usuario;
 import generador.Generador;
 
 public class Escenario3 implements Escenario {
+	
+	private int cantUsuarios;
+
+	public Escenario3 (int cantUsuario) {
+		this.cantUsuarios = cantUsuario;
+		
+	}
 
 
 	@Override

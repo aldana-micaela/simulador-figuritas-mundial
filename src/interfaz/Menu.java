@@ -144,6 +144,7 @@ public class Menu {
 				Escenario escenario = getEscenario();
 
 				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario);
+				System.exit(0);
 				frame.setVisible(false);
 
 			}
@@ -195,9 +196,9 @@ public class Menu {
 		if (getEscenarioSeleccionado() == 0)
 			escenario = new Escenario1();
 		else if (getEscenarioSeleccionado() == 1)
-			escenario = new Escenario2();
+			escenario = new Escenario2(2);
 		else
-			escenario = new Escenario3();
+			escenario = new Escenario3(3);
 		return escenario;
 	}
 	

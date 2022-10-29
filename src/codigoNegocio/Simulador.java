@@ -28,7 +28,7 @@ public class Simulador extends Thread {
 		while (!getUsuario().estaCompleto()) {
 			try {
 
-				Thread.sleep(50);
+				Thread.sleep(100);
 				getEscenario().simular(instancia.getUsers(), generador);
 				notificarObservadores();
 				iteracion++;
