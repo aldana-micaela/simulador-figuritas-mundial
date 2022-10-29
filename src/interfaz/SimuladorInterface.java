@@ -94,10 +94,9 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	}
 
 	private void crearFrame() {
-		frame = new JFrame();
+		frame = new JFrame("Simulador");
 		frame.setBounds(450, 150, 639, 457);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Simulador");
 		frame.setVisible(true);
 	}
 

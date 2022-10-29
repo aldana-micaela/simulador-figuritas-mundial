@@ -83,10 +83,9 @@ public class Menu {
 	}
 
 	private void crearFrame() {
-		frame = new JFrame();
+		frame = new JFrame("Simulador");
 		frame.setBounds(450, 150, 639, 457);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Simulador");
 	}
 
 	private void crearPanel() {
