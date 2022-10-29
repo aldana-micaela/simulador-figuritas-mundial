@@ -15,7 +15,13 @@ public class Escenario2 implements Escenario {
 	
 	@Override
 	public void generarPaquete(Usuario u, Generador g) {
-		// TODO Auto-generated method stub
+		int i = 0;
+		while (i < u.getCantFiguritasXPaquete()) {
+
+			agregarFigurita(u, g.nextInt(u.getCantFiguritas()));
+
+			i++;
+		}
 		
 	}
 
