@@ -27,7 +27,10 @@ public class Escenario2 implements Escenario {
 
 	@Override
 	public void agregarFigurita(Usuario u, int i) {
-		// TODO Auto-generated method stub
+	
+			u.agregarFigurita(i);
+			u.incrementarFiguritasAcertadas();
+		
 		
 	}
 
@@ -43,5 +46,8 @@ public class Escenario2 implements Escenario {
 	}
 
 
+	public void intercambiarFiguritas() {
+		
+	}
 	
 }

@@ -3,6 +3,7 @@ package codigoNegocio;
 public class Usuario {
 
 	private boolean[] albumFiguritas;
+	private int[] figuritasRepetidas;
 	private int figuritasAcertadas;
 	private Instancia instancia;
 
@@ -31,6 +32,9 @@ public class Usuario {
 	
 	
 	public void agregarFigurita(int i) {
+		if(getFiguritas()[i]=true) {
+			agregarFiguritaRepetida(i);
+		}
 		getFiguritas()[i]=true;
 	}
 	
@@ -55,6 +59,10 @@ public class Usuario {
 
 	public int getFiguritasAcertadas() {
 		return figuritasAcertadas;
+	}
+	
+	private void agregarFiguritaRepetida(int i) {
+		figuritasRepetidas[i]+=1;
 	}
 
 
