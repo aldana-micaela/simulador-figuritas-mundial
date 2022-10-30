@@ -66,4 +66,20 @@ public class Usuario {
 	}
 
 
+	public int damefiguritaRepetida() {
+	int figurita = 0;
+	for(int f: figuritasRepetidas) {
+		if(0< f) {
+			figurita=f;
+		}
+	}
+		return figurita ;
+	}
+
+
+	public boolean estaFigurita(int f1) {
+		return getFiguritas()[f1]=true;
+	}
+
+
 }

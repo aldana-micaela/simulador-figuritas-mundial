@@ -44,9 +44,14 @@ public class Escenario2 implements Escenario {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 
-	public void intercambiarFiguritas() {
+	public void intercambiarFiguritas(Usuario u1, Usuario u2) {
+		int f1= u1.damefiguritaRepetida();
+		if(0<f1 && !u2.estaFigurita(f1)) {
+		  u2.agregarFigurita(f1);
+		}
 		
 	}
 	
