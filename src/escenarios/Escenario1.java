@@ -1,7 +1,6 @@
 package escenarios;
 
 import codigoNegocio.Usuario;
-
 import generador.Generador;
 
 public class Escenario1 implements Escenario {
