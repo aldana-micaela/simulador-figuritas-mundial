@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ import escenarios.Escenario3;
 import java.awt.Color;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
+
 import javax.swing.JComboBox;
 
 import java.awt.Font;
@@ -29,7 +30,6 @@ public class Menu {
 	private JFrame frame;
 	private JPanel panel;
 	private JButton btnNewButton;
-	private JLabel Imagen;
 	private JLabel txtFifa;
 	private JLabel txtQatar;
 	private JComboBox<String> comboBox;

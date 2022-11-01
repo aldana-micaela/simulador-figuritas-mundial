@@ -11,8 +11,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import codigoNegocio.Instancia;
 import codigoNegocio.Simulador;
+import codigoNegocio.Usuario;
 import escenarios.Escenario;
 import escenarios.Escenario1;
 import generador.GeneradorRandom;
@@ -40,6 +47,9 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private JProgressBar progressBar;
 	private Observador observador;
+	private JButton btnVerGrafico;
+	private DefaultCategoryDataset datos;
+	private JFreeChart grafico;
 	
 	private static Menu menu;
 
@@ -88,9 +98,45 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		crearTextoDeEstadisticas();
 		crearBarraProgreso();
 		inicializarEscenario();
+		crearBotonGrafico();
 		execute();
 //		crearBtnSimular();
 
+	}
+
+	private void crearBotonGrafico() {
+		 btnVerGrafico = new JButton("Ver Grafico");
+		btnVerGrafico.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+				frame = new JFrame();
+				frame.setBounds(100, 100, 450, 300);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			    datos= new DefaultCategoryDataset();
+			    for(Usuario u: simulador.getUsuarios())
+			    datos.addValue(u.getPaquetes(), u.getNumeroUsuario()+"", "Usuario"+u.getPaquetes());
+			    
+			    grafico= ChartFactory.createBarChart(
+			    		"Paquetes vendidos en total",
+			    		"Figuritas",
+			    		"Paquetes vendidos",
+			    		datos, 
+			    		PlotOrientation.VERTICAL, 
+			    		false, 
+			    		false,
+			    		false);
+			    
+			    ChartPanel panel = new ChartPanel(grafico);
+			    frame.getContentPane().add(panel);
+			    frame.pack();
+			    frame.setVisible(true);
+			}
+		});
+		btnVerGrafico.setBounds(445, 321, 144, 58);
+		panel.add(btnVerGrafico);
+		
 	}
 
 	private void crearFrame() {
@@ -149,6 +195,8 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		progressBar = new JProgressBar();
 		progressBar.setBounds(15, 153, 600, 40);
 		panel.add(progressBar);
+		
+		
 
 	}
 
