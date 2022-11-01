@@ -12,7 +12,7 @@ public class Escenario1 implements Escenario {
 	private int donadas;
 
 	public Escenario1 (int cantUsuario) {
-		this.cantUsuarios = 1;
+		this.cantUsuarios = cantUsuario;
 		this.donadas=0;
 		
 	}
