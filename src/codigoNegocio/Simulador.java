@@ -48,6 +48,8 @@ public class Simulador extends Thread {
 	private void notificarObservadores(Usuario u) {
 		for (Observador o : observadores)
 			o.notificar(u);
+		    
+		   
 	}
 
 	public void registrarObservador(Observador o) {

@@ -5,6 +5,6 @@ import codigoNegocio.Usuario;
 public interface Observador {
 
 	public void notificar(Usuario u);
-
+    
 	
 }

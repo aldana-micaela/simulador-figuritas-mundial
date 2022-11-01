@@ -117,6 +117,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		progressBar.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());
 
 		observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
+		
 		simulador.registrarObservador(observador);
 
 	}
