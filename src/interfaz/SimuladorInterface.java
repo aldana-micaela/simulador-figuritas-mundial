@@ -2,12 +2,13 @@ package interfaz;
 
 import java.awt.Color;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JTextField;
+
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
@@ -21,13 +22,12 @@ import codigoNegocio.Instancia;
 import codigoNegocio.Simulador;
 import codigoNegocio.Usuario;
 import escenarios.Escenario;
-import escenarios.Escenario1;
+
 import generador.GeneradorRandom;
 import observador.Observador;
 import observador.ObservadorPorInterfaz;
 
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -99,6 +99,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		crearBarraProgreso();
 		inicializarEscenario();
 		crearBotonGrafico();
+		eventoBotonGrafico();
 		execute();
 //		crearBtnSimular();
 
@@ -106,34 +107,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private void crearBotonGrafico() {
 		 btnVerGrafico = new JButton("Ver Grafico");
-		btnVerGrafico.addActionListener(new ActionListener() {
-			
-
-			public void actionPerformed(ActionEvent e) {
-				frame = new JFrame();
-				frame.setBounds(100, 100, 450, 300);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			    datos= new DefaultCategoryDataset();
-			    for(Usuario u: simulador.getUsuarios())
-			    datos.addValue(u.getPaquetes(), u.getNumeroUsuario()+"", "Usuario"+u.getPaquetes());
-			    
-			    grafico= ChartFactory.createBarChart(
-			    		"Paquetes vendidos en total",
-			    		"Figuritas",
-			    		"Paquetes vendidos",
-			    		datos, 
-			    		PlotOrientation.VERTICAL, 
-			    		false, 
-			    		false,
-			    		false);
-			    
-			    ChartPanel panel = new ChartPanel(grafico);
-			    frame.getContentPane().add(panel);
-			    frame.pack();
-			    frame.setVisible(true);
-			}
-		});
+		
 		btnVerGrafico.setBounds(445, 321, 144, 58);
 		panel.add(btnVerGrafico);
 		
@@ -166,6 +140,37 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		
 		simulador.registrarObservador(observador);
 
+	} 
+	
+	private void eventoBotonGrafico() {
+btnVerGrafico.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+				frame = new JFrame();
+				frame.setBounds(100, 100, 450, 300);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			    datos= new DefaultCategoryDataset();
+			    for(Usuario u: simulador.getUsuarios())
+			    datos.addValue(u.getPaquetes(), u.getNumeroUsuario()+"", "Usuario"+u.getNumeroUsuario());
+			    
+			    grafico= ChartFactory.createBarChart(
+			    		"Paquetes vendidos en total",
+			    		"Figuritas",
+			    		"Paquetes vendidos",
+			    		datos, 
+			    		PlotOrientation.VERTICAL, 
+			    		false, 
+			    		false,
+			    		false);
+			    
+			    ChartPanel panel = new ChartPanel(grafico);
+			    frame.getContentPane().add(panel);
+			    frame.pack();
+			    frame.setVisible(true);
+			}
+		});
 	}
 
 //	public void crearBtnSimular() {
