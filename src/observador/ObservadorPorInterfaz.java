@@ -34,7 +34,6 @@ public class ObservadorPorInterfaz implements Observador {
 //				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
 		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + u.getPaquetes() + " Figuritas acertadas: "
 				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
-
 		
 		barra.setValue(total());
 

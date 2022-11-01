@@ -23,7 +23,7 @@ public class Escenario3 implements Escenario {
 		while (i < u.getCantFiguritasXPaquete()) {
 
 			u.agregarFigurita(g.nextInt(u.getCantFiguritas()));
-			IntercambiarRepetidas(u);
+			donarRepetidas(u);
 
 			i++;
 		}
@@ -42,17 +42,16 @@ public class Escenario3 implements Escenario {
 
 	}
 
-	private void IntercambiarRepetidas(Usuario user) {
+	private void donarRepetidas(Usuario user) {
 		int f=0;
 		for (Usuario u : lista) {
 
 			if (user.getNumeroUsuario() != u.getNumeroUsuario()) {
 
 				for (int i = 0; i < u.getCantFiguritas(); i++) {
-
-					if (user.getFiguritasRepetidas()[i] > 0 && u.getAlbumFiguritas()[i]) {
-						f=intercambioDefiguritas(user,u);
-						if(f>-1) {
+					f=intercambioDefiguritas(user,u);
+					if (user.getFiguritasRepetidas()[i] > 0 && u.getAlbumFiguritas()[i] && f>0) {
+						
 							u.getAlbumFiguritas()[i] = true;
 							u.incrementarFiguritasAcertadas();
 							user.decrementarFiguritasRepetidas(i);
@@ -62,7 +61,7 @@ public class Escenario3 implements Escenario {
 							user.incrementarFiguritasAcertadas();
 							u.decrementarFiguritasRepetidas(f);
 							intercambiadas++;
-						}
+						
 						
 					}
 				}

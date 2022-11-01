@@ -29,13 +29,13 @@ public class Simulador extends Thread {
 		try {
 			for (Usuario u : getUsuarios()) {
 				
-				while (!u.estaCompleto()) {
+			  while (!u.estaCompleto()) {
 					Thread.sleep(100);
 					getEscenario().simular(u, generador, getUsuarios());
 					notificarObservadores(u);
 					u.incrementarPaquete();
 					iteracion++;
-				}
+		 		}
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
