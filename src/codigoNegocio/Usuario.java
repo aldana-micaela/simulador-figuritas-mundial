@@ -8,6 +8,7 @@ public class Usuario {
 
 
 	private int figuritasAcertadas;
+	private int paquetes;
 	private Instancia instancia;
 
 	public Usuario(Instancia instancia, int i) {
@@ -15,6 +16,7 @@ public class Usuario {
 		this.albumFiguritas = new boolean[instancia.getCantFiguritas()];
 		this.figuritasRepetidas = new int[instancia.getCantFiguritas()];
 		this.numeroUsuario=i;
+		this.paquetes=0;
 
 	}
 
@@ -70,6 +72,18 @@ public class Usuario {
 	
 	public int[] getFiguritasRepetidas() {
 		return figuritasRepetidas;
+	}
+
+
+	public int getPaquetes() {
+		
+		return this.paquetes;
+	}
+
+
+	public void incrementarPaquete() {
+		this.paquetes++;
+		
 	}
 	
 	

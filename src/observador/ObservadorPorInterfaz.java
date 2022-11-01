@@ -22,14 +22,17 @@ public class ObservadorPorInterfaz implements Observador {
 
 	@Override
 	public void notificar(Usuario u) {
+
 		System.out.print(" Usuario: " + u.getNumeroUsuario());
 		System.out.print(" Paquete: " + simulador.getIteracion());
 		System.out.print(" figuritasAcertadas: " + u.getFiguritasAcertadas()+ "/" + simulador.getCantFiguritas());
-		System.out.print(" donadas: " + simulador.getEscenario().getDonadas());
-		System.out.print(" NO donadas: " + simulador.getEscenario().getNoDonadas());
+		System.out.print(" donadas/intercambiadas: " + simulador.getEscenario().getDonadas());
+		System.out.print(" NO donadas/intercambiadas: " + simulador.getEscenario().getNoDonadas());
 		System.out.println();
 
-		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + simulador.getIteracion() + " Figuritas acertadas: "
+//		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + simulador.getIteracion() + " Figuritas acertadas: "
+//				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
+		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + u.getPaquetes() + " Figuritas acertadas: "
 				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
 
 		

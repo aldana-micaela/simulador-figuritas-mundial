@@ -33,6 +33,7 @@ public class Simulador extends Thread {
 					Thread.sleep(100);
 					getEscenario().simular(u, generador, getUsuarios());
 					notificarObservadores(u);
+					u.incrementarPaquete();
 					iteracion++;
 				}
 			}
