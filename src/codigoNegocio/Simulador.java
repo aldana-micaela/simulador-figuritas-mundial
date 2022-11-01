@@ -25,38 +25,56 @@ public class Simulador extends Thread {
 
 	public void simular() {
 
-		while (!getUsuario().estaCompleto()) {
-			try {
-
-				Thread.sleep(100);
-				getEscenario().simular(instancia.getUsers(), generador);
-				notificarObservadores();
-				iteracion++;
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		
+		try {
+			for (Usuario u : getUsuarios()) {
+				
+				while (!u.estaCompleto()) {
+					Thread.sleep(100);
+					getEscenario().simular(u, generador, getUsuarios());
+					notificarObservadores(u);
+					iteracion++;
+				}
 			}
-
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
+		
 
-	private void notificarObservadores() {
+	private void notificarObservadores(Usuario u) {
 		for (Observador o : observadores)
-			o.notificar();
+			o.notificar(u);
 	}
 
 	public void registrarObservador(Observador o) {
 		observadores.add(o);
 	}
 
-	private Escenario getEscenario() {
+	public Escenario getEscenario() {
 		return instancia.getEscenario();
 	}
 
-	public Usuario getUsuario() {
+	public ArrayList<Usuario> getUsuarios() {
 		return instancia.getUsers();
 	}
+
+//	public boolean todosCompletos() {
+//
+//		boolean estanCompletos = true;
+//		for (Usuario e : instancia.getUsers()) {
+//
+//			if (e.estaCompleto())
+//				estanCompletos = estanCompletos && true;
+//			else
+//				estanCompletos = false;
+//
+//		}
+//		return estanCompletos;
+//
+//	}
 
 	public int getCantFiguritas() {
 		return instancia.getCantFiguritas();
@@ -66,11 +84,14 @@ public class Simulador extends Thread {
 		return iteracion;
 	}
 
+	public Instancia getInstancia() {
+		return instancia;
+	}
+
 	@Override
 	public void run() {
 
 		simular();
-
 	}
 
 }

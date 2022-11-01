@@ -2,55 +2,62 @@ package codigoNegocio;
 
 public class Usuario {
 
+	private int numeroUsuario;
 	private boolean[] albumFiguritas;
 	private int[] figuritasRepetidas;
+
+
 	private int figuritasAcertadas;
 	private Instancia instancia;
 
-	public Usuario(Instancia instancia) {
+	public Usuario(Instancia instancia, int i) {
 		this.instancia = instancia;
 		this.albumFiguritas = new boolean[instancia.getCantFiguritas()];
+		this.figuritasRepetidas = new int[instancia.getCantFiguritas()];
+		this.numeroUsuario=i;
 
 	}
 
 
 	public boolean estaCompleto() {
-		boolean estaCompleto = true;
 
-		for (int i = 0; i < albumFiguritas.length; i++) {
 
-			if (albumFiguritas[i]) {
-				estaCompleto = estaCompleto && true;
-			} else {
-				estaCompleto = false;
-			}
-		}
-		return estaCompleto;
-
-//		return figuritasAcertadas==cantFiguritas;
+		return getFiguritasAcertadas()== getCantFiguritas();
 	}
 	
 	
 	public void agregarFigurita(int i) {
-		if(getFiguritas()[i]=true) {
-			agregarFiguritaRepetida(i);
+		
+		if(getAlbumFiguritas()[i]==false) {
+			getAlbumFiguritas()[i]=true;
+			incrementarFiguritasAcertadas();
 		}
-		getFiguritas()[i]=true;
+		else {
+			figuritasRepetidas[i]++;
+		}
 	}
 	
 	public void incrementarFiguritasAcertadas() {
 		figuritasAcertadas++;
 	}
+	public void decrementarFiguritasRepetidas(int i ) {
+		if(figuritasRepetidas[i]>0)
+			figuritasRepetidas[i]--;
+	}
 
-	public boolean[] getFiguritas() {
+	public boolean[] getAlbumFiguritas() {
 		return albumFiguritas;
 	}
-	public boolean getFigurita(int i) {
+	public boolean getAlbumFigurita(int i) {
 		return albumFiguritas[i];
 	}
 
 	public int getCantFiguritas() {
 		return instancia.getCantFiguritas();
+	}
+	
+	public int getNumeroUsuario() {
+		return numeroUsuario;
 	}
 
 	public int getCantFiguritasXPaquete() {
@@ -61,25 +68,11 @@ public class Usuario {
 		return figuritasAcertadas;
 	}
 	
-	private void agregarFiguritaRepetida(int i) {
-		figuritasRepetidas[i]+=1;
+	public int[] getFiguritasRepetidas() {
+		return figuritasRepetidas;
 	}
-
-
-	public int damefiguritaRepetida() {
-	int figurita = 0;
-	for(int f: figuritasRepetidas) {
-		if(0< f) {
-			figurita=f;
-		}
-	}
-		return figurita ;
-	}
-
-
-	public boolean estaFigurita(int f1) {
-		return getFiguritas()[f1]=true;
-	}
+	
+	
 
 
 }

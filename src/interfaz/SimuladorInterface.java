@@ -113,6 +113,9 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private void inicializarEscenario() {
 		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario);
 		simulador = new Simulador(instancia, new GeneradorRandom());
+		progressBar.setMinimum(0);
+		progressBar.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());
+
 		observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
 		simulador.registrarObservador(observador);
 

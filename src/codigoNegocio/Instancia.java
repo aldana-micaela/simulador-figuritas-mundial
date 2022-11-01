@@ -22,8 +22,8 @@ public class Instancia {
 		
 		users = new ArrayList<Usuario>(cantUsuarios);
 		
-		for(int i =0; i<cantUsuarios; i++)
-			users.add(new Usuario(this));
+		for(int i =1; i<=cantUsuarios; i++)
+			users.add(new Usuario(this, i));
 		
 	}
 
@@ -39,9 +39,11 @@ public class Instancia {
 		return escenario;
 	}
 	
-	public Usuario getUsers() {
-		return users.get(0);
+	public ArrayList <Usuario> getUsers() {
+		return users;
 	}
+	
+
 
 	
 	

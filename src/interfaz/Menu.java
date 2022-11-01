@@ -192,7 +192,7 @@ public class Menu {
 		
 		Escenario escenario;
 		if (getEscenarioSeleccionado() == 0)
-			escenario = new Escenario1();
+			escenario = new Escenario1(getCantUsuarios());
 		else if (getEscenarioSeleccionado() == 1)
 			escenario = new Escenario2(getCantUsuarios());
 		else
