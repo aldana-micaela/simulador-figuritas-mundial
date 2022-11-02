@@ -19,7 +19,7 @@ public class Simulador extends Thread {
 		this.generador = g;
 		iteracion = 1;
 
-		observadores = new ArrayList<Observador>();
+//		observadores = new ArrayList<Observador>();
 
 	}
 
@@ -27,6 +27,10 @@ public class Simulador extends Thread {
 
 		
 		try {
+			
+		  for(int i=0; i< instancia.getCantSimulacion(); i++) {
+			  
+		 
 			for (Usuario u : getUsuarios()) {
 			  while (!u.estaCompleto()) {
 
@@ -37,6 +41,7 @@ public class Simulador extends Thread {
 					iteracion++;
 		 		}
 			}
+		  }
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
