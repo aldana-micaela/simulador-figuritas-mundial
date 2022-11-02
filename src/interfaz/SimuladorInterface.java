@@ -2,7 +2,6 @@ package interfaz;
 
 import java.awt.Color;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,12 +11,6 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-
 import codigoNegocio.Instancia;
 import codigoNegocio.Simulador;
 import codigoNegocio.Usuario;
@@ -25,23 +18,26 @@ import escenarios.Escenario;
 
 import generador.GeneradorRandom;
 import observador.Observador;
+import observador.ObservadorGrafico;
 import observador.ObservadorPorInterfaz;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.JTextField;
 
 public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private JFrame frame;
 	private JPanel panel;
-	
+
 	private int cantFiguritas;
 	private int cantFiguritasXPaquete;
 	private Escenario escenario;
 	private int cantSimulacion;
-
 
 	private Simulador simulador;
 	private JLabel txtObservador;
@@ -50,10 +46,15 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private JProgressBar progressBar;
 	private Observador observador;
 	private JButton btnVerGrafico;
-	private DefaultCategoryDataset datos;
-	private JFreeChart grafico;
-	
+	private JButton btnInterrumpir;
+
 	private static Menu menu;
+	private JLabel instanciaSeleccionadaUsuario;
+	private JTextField valorCantUsuarios;
+	private JLabel instanciaCantFigus;
+	private JLabel instanciaCantFigusXPaquete;
+	private JTextField valorCantFigus;
+	private JTextField valorCantFigusXPaq;
 
 	/**
 	 * Launch the application.
@@ -62,10 +63,11 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+
 					menu = new Menu();
-					
-					SimuladorInterface window = new SimuladorInterface(menu.getCantFiguritas(), menu.getCantFiguritasXPaquete(), menu.getEscenario(), menu.getCantSimulaciones());
+
+					SimuladorInterface window = new SimuladorInterface(menu.getCantFiguritas(),
+							menu.getCantFiguritasXPaquete(), menu.getEscenario(), menu.getCantSimulaciones());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,18 +79,18 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	/**
 	 * Create the application.
 	 */
-	public SimuladorInterface(int cantFiguritas, int cantFiguritasXPaquete, Escenario escenario, int  cantSimulaciones) {
+	public SimuladorInterface(int cantFiguritas, int cantFiguritasXPaquete, Escenario escenario, int cantSimulaciones) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		this.cantFiguritas=cantFiguritas;
-		this.cantFiguritasXPaquete=cantFiguritasXPaquete;
-		this.escenario=escenario;
+
+		this.cantFiguritas = cantFiguritas;
+		this.cantFiguritasXPaquete = cantFiguritasXPaquete;
+		this.escenario = escenario;
 		this.cantSimulacion = cantSimulaciones;
-		
+
 		initialize();
 	}
 
@@ -99,26 +101,28 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		crearFrame();
 		crearPanel();
 		crearTextoDeEstadisticas();
+		crearTextoInstanciaSeleccionada();
 		crearBarraProgreso();
 		inicializarEscenario();
 		crearBotonGrafico();
 		eventoBotonGrafico();
-		execute();
-//		crearBtnSimular();
+
+		crearBtnInterrumpirProceso();
 
 	}
 
 	private void crearBotonGrafico() {
-		 btnVerGrafico = new JButton("Ver Grafico");
-		
-		btnVerGrafico.setBounds(445, 321, 144, 58);
+		btnVerGrafico = new JButton("Ver Grafico");
+		btnVerGrafico.setFont(new Font("Consolas", Font.BOLD, 15));
+
+		btnVerGrafico.setBounds(347, 162, 191, 54);
 		panel.add(btnVerGrafico);
-		
+
 	}
 
 	private void crearFrame() {
 		frame = new JFrame("Simulador");
-		frame.setBounds(450, 150, 639, 457);
+		frame.setBounds(450, 150, 639, 288);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
@@ -126,7 +130,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private void crearPanel() {
 		panel = new JPanel();
 		panel.setForeground(new Color(255, 255, 255));
-		panel.setBackground(new Color(128, 0, 0));
+		panel.setBackground(SystemColor.activeCaptionBorder);
 		panel.setBounds(10, 10, 604, 497);
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
@@ -136,64 +140,90 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private void inicializarEscenario() {
 		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
 		simulador = new Simulador(instancia, new GeneradorRandom());
-		progressBar.setMinimum(0);
-		progressBar.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());
 
 		observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
-		
-		simulador.registrarObservador(observador);
 
-	} 
-	
+		simulador.registrarObservador(observador);
+		simulador.start();
+
+	}
+
 	private void eventoBotonGrafico() {
-btnVerGrafico.addActionListener(new ActionListener() {
-			
+		btnVerGrafico.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				frame = new JFrame();
-				frame.setBounds(100, 100, 450, 300);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				simulador.interrupt();
+				new ObservadorGrafico(simulador).notificar();
+
+			}
+		});
+	}
+	
+	private void crearTextoInstanciaSeleccionada() {
+			instanciaSeleccionadaUsuario = new JLabel("Usuarios:");
+			instanciaSeleccionadaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			instanciaSeleccionadaUsuario.setBounds(15, 10, 207, 37);
+			panel.add(instanciaSeleccionadaUsuario);
 			
-			    datos= new DefaultCategoryDataset();
-			    for(Usuario u: simulador.getUsuarios())
-			    datos.addValue(u.getPaquetes(), u.getNumeroUsuario()+"", "Usuario"+u.getNumeroUsuario());
-			    
-			    grafico= ChartFactory.createBarChart(
-			    		"Paquetes vendidos en total",
-			    		"Figuritas",
-			    		"Paquetes vendidos",
-			    		datos, 
-			    		PlotOrientation.VERTICAL, 
-			    		false, 
-			    		false,
-			    		false);
-			    
-			    ChartPanel panel = new ChartPanel(grafico);
-			    frame.getContentPane().add(panel);
-			    frame.pack();
-			    frame.setVisible(true);
+			instanciaCantFigus = new JLabel("Cantidad figuritas del album:");
+			instanciaCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			instanciaCantFigus.setBounds(122, 10, 207, 37);
+			panel.add(instanciaCantFigus);
+			
+			instanciaCantFigusXPaquete = new JLabel("Cantidad figuritas x paquete:");
+			instanciaCantFigusXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			instanciaCantFigusXPaquete.setBounds(373, 10, 207, 37);
+			panel.add(instanciaCantFigusXPaquete);
+			
+			valorCantUsuarios = new JTextField(String.valueOf(escenario.getCantUsuarios()));
+			valorCantUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			valorCantUsuarios.setEditable(false);
+			valorCantUsuarios.setBounds(78, 10, 34, 29);
+			panel.add(valorCantUsuarios);
+			valorCantUsuarios.setColumns(10);
+			
+		
+			valorCantFigus = new JTextField(String.valueOf(cantFiguritas));
+			valorCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			valorCantFigus.setEditable(false);
+			valorCantFigus.setBounds(323, 10, 34, 29);
+			panel.add(valorCantFigus);
+			valorCantFigus.setColumns(10);
+			
+
+			
+			valorCantFigusXPaq = new JTextField(String.valueOf(cantFiguritasXPaquete));
+			valorCantFigusXPaq.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			valorCantFigusXPaq.setEditable(false);
+			valorCantFigusXPaq.setBounds(581, 10, 34, 29);
+			panel.add(valorCantFigusXPaq);
+			valorCantFigusXPaq.setColumns(10);
+
+			
+	}
+
+	public void crearBtnInterrumpirProceso() {
+
+		btnInterrumpir = new JButton("Interrumpir proceso");
+		btnInterrumpir.setFont(new Font("Consolas", Font.BOLD, 15));
+		btnInterrumpir.setBounds(78, 162, 215, 54);
+		panel.add(btnInterrumpir);
+
+
+		btnInterrumpir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				simulador.interrupt();
+
 			}
 		});
 	}
 
-//	public void crearBtnSimular() {
-//
-//		JButton btnNewButton = new JButton("New button");
-//		btnNewButton.setBounds(172, 343, 243, 40);
-//		panel.add(btnNewButton);
-//
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//
-//				execute();
-//
-//			}
-//		});
-//	}
-
 	public void crearTextoDeEstadisticas() {
 		txtObservador = new JLabel();
-		txtObservador.setBounds(15, 247, 600, 40);
+		txtObservador.setFont(new Font("Courier New", Font.PLAIN, 13));
+		txtObservador.setBounds(15, 108, 600, 40);
 		panel.add(txtObservador);
 
 	}
@@ -201,17 +231,15 @@ btnVerGrafico.addActionListener(new ActionListener() {
 	public void crearBarraProgreso() {
 		progressBar = new JProgressBar();
 		progressBar = new JProgressBar();
-		progressBar.setBounds(15, 153, 600, 40);
+		progressBar.setBounds(15, 57, 600, 40);
 		panel.add(progressBar);
-		
-		
 
 	}
 
 	@Override
 	protected Integer doInBackground() throws Exception {
 
-		simulador.start();
+		execute();
 
 		return null;
 	}

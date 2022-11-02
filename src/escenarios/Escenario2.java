@@ -8,12 +8,9 @@ import generador.Generador;
 public class Escenario2 implements Escenario {
 
 	private int cantUsuarios;
-	ArrayList<Usuario> lista;
-	private int donadas;
 
 	public Escenario2(int cantUsuario) {
 		this.cantUsuarios = cantUsuario;
-		this.donadas = 0;
 
 	}
 
@@ -24,33 +21,38 @@ public class Escenario2 implements Escenario {
 		while (i < u.getCantFiguritasXPaquete()) {
 
 			u.agregarFigurita(g.nextInt(u.getCantFiguritas()));
-			donarRepetidas(u);
 
 			i++;
 		}
+		u.incrementarPaquete();
 	}
 
 	@Override
-	public void simular(Usuario u, Generador g, ArrayList<Usuario> lista) {
-		this.lista = lista;
-		generarPaquete(u, g);
+	public void simular(Generador g, ArrayList<Usuario> lista) {
+		for (Usuario u : lista)
+			if (!u.estaCompleto())
+				generarPaquete(u, g);
+
+		donarRepetidas(lista);
 
 	}
 
-	public void donarRepetidas(Usuario user) {
+	public void donarRepetidas(ArrayList<Usuario> lista) {
 
-		for (Usuario u : lista) {
+		for (Usuario user : lista) {
 
-			if (user.getNumeroUsuario() != u.getNumeroUsuario()) {
+			for (Usuario u : lista) {
 
-				for (int i = 0; i < u.getCantFiguritas(); i++) {
+				if (user.getNumeroUsuario() != u.getNumeroUsuario()) {
 
-					if (user.getFiguritasRepetidas()[i] > 0 && u.getAlbumFiguritas()[i] == false) {
-						u.getAlbumFiguritas()[i] = true;
-						u.incrementarFiguritasAcertadas();
-						user.decrementarFiguritasRepetidas(i);
-						donadas++;
+					for (int i = 0; i < u.getCantFiguritas(); i++) {
 
+						if (user.getFiguritasRepetidas()[i] > 0 && u.getAlbumFiguritas()[i] == false) {
+							u.agregarFigurita(i);
+							user.decrementarFiguritasRepetidas(i);
+							user.incrementarDonadas();
+
+						}
 					}
 				}
 			}
@@ -63,24 +65,6 @@ public class Escenario2 implements Escenario {
 	public int getCantUsuarios() {
 
 		return cantUsuarios;
-	}
-	
-	
-
-	public int getNoDonadas() {
-		int i=0;
-		
-		for(Usuario u: lista) {
-			for(int j=0; j<u.getCantFiguritas(); j++) {
-				
-				i = i + u.getFiguritasRepetidas()[j];
-			}
-		}
-		return i;
-	}
-	public int getDonadas() {
-
-		return donadas;
 	}
 
 }

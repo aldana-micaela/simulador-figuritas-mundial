@@ -29,7 +29,7 @@ public class Menu {
 
 	private JFrame frame;
 	private JPanel panel;
-	private JButton btnNewButton;
+	private JButton btnIniciarSimulador;
 	private JLabel txtFifa;
 	private JLabel txtQatar;
 	private JComboBox<String> comboBox;
@@ -40,7 +40,6 @@ public class Menu {
 	private JTextField cantidadFiguritasTotal;
 	private JLabel txtCantidadFiguritasTotal;
 	private JTextField cantidadUsuarios;
-	private JTextField textField;
 	private JLabel txtCantidadSimulaciones;
 	private JTextField cantSimulaciones;
 
@@ -75,12 +74,9 @@ public class Menu {
 		crearFrame();
 		crearPanel();
 		crearLabels();
-
 		crearSeleccionCantidades();
-
 		crearbotonDeIniciar();
 		crearcombobox();
-
 		eventoBotonIniciar();
 
 	}
@@ -115,30 +111,23 @@ public class Menu {
 
 	private void crearcombobox() {
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds(212, 138, 239, 22);
+		comboBox.setFont(new Font("Consolas", Font.BOLD, 13));
+		comboBox.setBounds(189, 138, 277, 36);
 		panel.add(comboBox);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario",
 				"N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
 		
-		
-
 	}
 
 	private void crearbotonDeIniciar() {
-		btnNewButton = new JButton("Iniciar Simulador");
-		btnNewButton.setBounds(201, 353, 234, 44);
-		panel.add(btnNewButton);
+		btnIniciarSimulador = new JButton("Iniciar Simulador");
+		btnIniciarSimulador.setFont(new Font("Arial Black", Font.BOLD, 14));
+		btnIniciarSimulador.setBounds(201, 353, 234, 44);
+		panel.add(btnIniciarSimulador);
 	}
 
-//	private void ponerImagenDeFondo() {
-//		Imagen = new JLabel();
-//		Imagen.setIcon(new ImageIcon(Menu.class.getResource("Simulador/src/img/WhatsApp%20Image%202022-10-23%20at%2017.41.51.jpeg")));
-//		Imagen.setBounds(-67, -46, 1108, 530);
-//		frame.getContentPane().add(Imagen);
-//
-//	}
 	private void eventoBotonIniciar() {
-		btnNewButton.addActionListener(new ActionListener() {
+		btnIniciarSimulador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				int cantFiguritasXpaquete = getCantFiguritasXPaquete();
@@ -164,9 +153,10 @@ public class Menu {
 		txtCantUsuarios.setBounds(10, 205, 147, 22);
 		panel.add(txtCantUsuarios);
 
-		cantidadUsuarios = new JTextField();
+		cantidadUsuarios = new JTextField("1");
+		cantidadUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cantidadUsuarios.setColumns(10);
-		cantidadUsuarios.setBounds(270, 205, 28, 20);
+		cantidadUsuarios.setBounds(270, 205, 49, 20);
 		panel.add(cantidadUsuarios);
 
 		txtCantidadFiguritasTotal = new JLabel("Cantidad total de figuritas del album:");
@@ -175,9 +165,10 @@ public class Menu {
 		txtCantidadFiguritasTotal.setBounds(10, 237, 253, 22);
 		panel.add(txtCantidadFiguritasTotal);
 
-		cantidadFiguritasTotal = new JTextField();
+		cantidadFiguritasTotal = new JTextField("638");
+		cantidadFiguritasTotal.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cantidadFiguritasTotal.setColumns(10);
-		cantidadFiguritasTotal.setBounds(270, 237, 28, 20);
+		cantidadFiguritasTotal.setBounds(270, 237, 49, 20);
 		panel.add(cantidadFiguritasTotal);
 
 		txtCantidadFiguritasXPaquete = new JLabel("Cantidad de figuritas por paquete:");
@@ -186,8 +177,9 @@ public class Menu {
 		txtCantidadFiguritasXPaquete.setBounds(10, 269, 247, 22);
 		panel.add(txtCantidadFiguritasXPaquete);
 
-		cantidadFiguritasXPaquete = new JTextField();
-		cantidadFiguritasXPaquete.setBounds(270, 269, 28, 20);
+		cantidadFiguritasXPaquete = new JTextField("5");
+		cantidadFiguritasXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		cantidadFiguritasXPaquete.setBounds(270, 269, 49, 20);
 		panel.add(cantidadFiguritasXPaquete);
 		cantidadFiguritasXPaquete.setColumns(10);
 		
@@ -197,9 +189,10 @@ public class Menu {
 		txtCantidadSimulaciones.setBounds(10, 302, 247, 22);
 		panel.add(txtCantidadSimulaciones);
 		
-		cantSimulaciones = new JTextField();
+		cantSimulaciones = new JTextField("10");
+		cantSimulaciones.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cantSimulaciones.setColumns(10);
-		cantSimulaciones.setBounds(270, 300, 28, 20);
+		cantSimulaciones.setBounds(270, 300, 49, 20);
 		panel.add(cantSimulaciones );
 
 	}
@@ -209,7 +202,7 @@ public class Menu {
 		
 		Escenario escenario;
 		if (getEscenarioSeleccionado() == 0)
-			escenario = new Escenario1(getCantUsuarios());
+			escenario = new Escenario1();
 		else if (getEscenarioSeleccionado() == 1)
 			escenario = new Escenario2(getCantUsuarios());
 		else
@@ -229,7 +222,6 @@ public class Menu {
 		int cantSimulacion = Integer.parseInt(cantSimulaciones.getText());
 		return cantSimulacion;
 	}
-
 
 	public int getCantFiguritasXPaquete() {
 		int cantFiguritasXpaquete = Integer.parseInt(cantidadFiguritasXPaquete.getText());

@@ -8,5 +8,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jcommons"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jfreechart"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JCommon"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFreeChart"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -19,40 +19,35 @@ public class Simulador extends Thread {
 		this.generador = g;
 		iteracion = 1;
 
-//		observadores = new ArrayList<Observador>();
+		observadores = new ArrayList<Observador>();
 
 	}
 
 	public void simular() {
 
 		
-		try {
-			
-		  for(int i=0; i< instancia.getCantSimulacion(); i++) {
-			  
+		try {			  
 		 
-			for (Usuario u : getUsuarios()) {
-			  while (!u.estaCompleto()) {
+			  while (!todosCompletos()) {
 
 					Thread.sleep(100);
-					getEscenario().simular(u, generador, getUsuarios());
-					notificarObservadores(u);
-					u.incrementarPaquete();
+					getEscenario().simular( generador, getUsuarios());
+					notificarObservadores();
 					iteracion++;
-		 		}
-			}
+		 		
+			
 		  }
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Proceso interrumpido");
 		}
 
 	}
 		
 
-	private void notificarObservadores(Usuario u) {
+	private void notificarObservadores() {
 		for (Observador o : observadores)
-			o.notificar(u);
+			o.notificar();
 		    
 		   
 	}
@@ -69,20 +64,20 @@ public class Simulador extends Thread {
 		return instancia.getUsers();
 	}
 
-//	public boolean todosCompletos() {
-//
-//		boolean estanCompletos = true;
-//		for (Usuario e : instancia.getUsers()) {
-//
-//			if (e.estaCompleto())
-//				estanCompletos = estanCompletos && true;
-//			else
-//				estanCompletos = false;
-//
-//		}
-//		return estanCompletos;
-//
-//	}
+	public boolean todosCompletos() {
+
+		boolean estanCompletos = true;
+		for (Usuario e : instancia.getUsers()) {
+
+			if (e.estaCompleto())
+				estanCompletos = estanCompletos && true;
+			else
+				estanCompletos = false;
+
+		}
+		return estanCompletos;
+
+	}
 
 	public int getCantFiguritas() {
 		return instancia.getCantFiguritas();

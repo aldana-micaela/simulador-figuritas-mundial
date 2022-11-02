@@ -21,19 +21,14 @@ public class ObservadorPorInterfaz implements Observador {
 	}
 
 	@Override
-	public void notificar(Usuario u) {
+	public void notificar() {
 
-		System.out.print(" Usuario: " + u.getNumeroUsuario());
-		System.out.print(" Paquete: " + simulador.getIteracion());
-		System.out.print(" figuritasAcertadas: " + u.getFiguritasAcertadas()+ "/" + simulador.getCantFiguritas());
-		System.out.print(" donadas/intercambiadas: " + simulador.getEscenario().getDonadas());
-		System.out.print(" NO donadas/intercambiadas: " + simulador.getEscenario().getNoDonadas());
-		System.out.println();
+		barra.setMinimum(0);
+		barra.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());
 
-//		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + simulador.getIteracion() + " Figuritas acertadas: "
-//				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
-		label.setText(" Usuario: " + u.getNumeroUsuario() + " Paquete: " + u.getPaquetes() + " Figuritas acertadas: "
-				+ u.getFiguritasAcertadas() + "/" + simulador.getCantFiguritas());
+
+		label.setText(" Paquetes: " + paquetesGenerados() + " Figuritas acertadas: "
+				+ total()+ "/" + simulador.getCantFiguritas() * simulador.getUsuarios().size() + " (figuritas totales)");
 		
 		barra.setValue(total());
 
@@ -45,6 +40,13 @@ public class ObservadorPorInterfaz implements Observador {
 			tot= tot+u.getFiguritasAcertadas();
 		}
 		return tot;
+	}
+	
+	private int paquetesGenerados() {
+		int i=0;
+		for (Usuario u: simulador.getUsuarios())
+			i = i + u.getPaquetes();
+		return i;
 	}
 	
 	

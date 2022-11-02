@@ -5,10 +5,11 @@ public class Usuario {
 	private int numeroUsuario;
 	private boolean[] albumFiguritas;
 	private int[] figuritasRepetidas;
-
-
 	private int figuritasAcertadas;
 	private int paquetes;
+	private int donadas;
+	private int intercambiadas;
+	
 	private Instancia instancia;
 
 	public Usuario(Instancia instancia, int i) {
@@ -17,13 +18,13 @@ public class Usuario {
 		this.figuritasRepetidas = new int[instancia.getCantFiguritas()];
 		this.numeroUsuario=i;
 		this.paquetes=0;
+		this.donadas=0;
+		this.intercambiadas=0;
 
 	}
 
 
 	public boolean estaCompleto() {
-
-
 		return getFiguritasAcertadas()== getCantFiguritas();
 	}
 	
@@ -32,16 +33,14 @@ public class Usuario {
 		
 		if(getAlbumFiguritas()[i]==false) {
 			getAlbumFiguritas()[i]=true;
-			incrementarFiguritasAcertadas();
+			figuritasAcertadas++;
 		}
 		else {
 			figuritasRepetidas[i]++;
 		}
 	}
 	
-	public void incrementarFiguritasAcertadas() {
-		figuritasAcertadas++;
-	}
+
 	public void decrementarFiguritasRepetidas(int i ) {
 		if(figuritasRepetidas[i]>0)
 			figuritasRepetidas[i]--;
@@ -49,9 +48,6 @@ public class Usuario {
 
 	public boolean[] getAlbumFiguritas() {
 		return albumFiguritas;
-	}
-	public boolean getAlbumFigurita(int i) {
-		return albumFiguritas[i];
 	}
 
 	public int getCantFiguritas() {
@@ -79,12 +75,40 @@ public class Usuario {
 		
 		return this.paquetes;
 	}
+	public int getDonadas() {
+		
+		return this.donadas;
+	}
+	public int getIntercambiadas() {
+		
+		return this.intercambiadas;
+	}
 
+	public void incrementarDonadas() {
+		this.donadas++;
+	}
+	
+	public void incrementarIntercambiadas() {
+		this.intercambiadas++;
+		
+	}
 
 	public void incrementarPaquete() {
 		this.paquetes++;
 		
 	}
+	
+	public int getCantFiguritasRepetidas() {
+		int i=0;
+		
+		for(int j =0; j<albumFiguritas.length;j++);
+			i = i + figuritasRepetidas[i];
+			
+			return i;
+		
+	}
+	
+	
 	
 	
 

@@ -1,26 +1,41 @@
 package generador;
 
-import java.util.Random;
 
 public class GeneradorPrefijado implements Generador {
 	
+	private int cantidadColumnas;
+	private int[][] matrizDePaquetes;
+	private int columna;
+	private int fila;
 	
-	private Random random;
-	
-	public GeneradorPrefijado() {
-		this.random= new Random();
+	public GeneradorPrefijado(int cantidadFiguritasXPaquete) {
+		this.cantidadColumnas= cantidadFiguritasXPaquete;
 	}
 	
+	
+	public void setMatrizDePaquetes(int [][] matriz) {
+		
+		columna =0;
+		this.matrizDePaquetes=matriz;
+		
+		
+	}
 	
 
 	@Override
 	public int nextInt(int rango) {
-		return random.nextInt();
+		
+		if(columna== cantidadColumnas) {
+			fila++;
+			columna=0;
+		}
+		
+		return matrizDePaquetes[fila][columna++];
 	}
 
 	@Override
 	public boolean nextBoolean() {
-		return random.nextBoolean();
+		return false;
 	}
 }
 	

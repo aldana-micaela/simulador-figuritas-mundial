@@ -9,11 +9,9 @@ import generador.Generador;
 public class Escenario1 implements Escenario {
 	
 	private int cantUsuarios;
-	private int donadas;
 
-	public Escenario1 (int cantUsuario) {
-		this.cantUsuarios = cantUsuario;
-		this.donadas=0;
+	public Escenario1 () {
+		this.cantUsuarios = 1;
 		
 	}
 
@@ -27,6 +25,7 @@ public class Escenario1 implements Escenario {
 
 			i++;
 		}
+		u.incrementarPaquete();
 	}
 
 
@@ -36,20 +35,12 @@ public class Escenario1 implements Escenario {
 	}
 
 	@Override
-	public void simular(Usuario u, Generador g, ArrayList<Usuario> lista) {
-		generarPaquete(u, g);
+	public void simular(Generador g, ArrayList<Usuario> lista) {
+		for(Usuario u: lista)
+			if(!u.estaCompleto())
+				generarPaquete(u, g);
 		
-	}
-	
-	public int getDonadas() {
-		
-		return donadas;
 	}
 
-	@Override
-	public int getNoDonadas() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
