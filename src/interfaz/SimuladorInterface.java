@@ -115,7 +115,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		btnVerGrafico = new JButton("Ver Grafico");
 		btnVerGrafico.setFont(new Font("Consolas", Font.BOLD, 15));
 
-		btnVerGrafico.setBounds(347, 162, 191, 54);
+		btnVerGrafico.setBounds(347, 179, 191, 54);
 		panel.add(btnVerGrafico);
 
 	}
@@ -125,6 +125,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		frame.setBounds(450, 150, 639, 288);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.setResizable(false);
 	}
 
 	private void crearPanel() {
@@ -163,23 +164,23 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private void crearTextoInstanciaSeleccionada() {
 			instanciaSeleccionadaUsuario = new JLabel("Usuarios:");
 			instanciaSeleccionadaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaSeleccionadaUsuario.setBounds(15, 10, 207, 37);
+			instanciaSeleccionadaUsuario.setBounds(15, 20, 207, 37);
 			panel.add(instanciaSeleccionadaUsuario);
 			
 			instanciaCantFigus = new JLabel("Cantidad figuritas del album:");
 			instanciaCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaCantFigus.setBounds(122, 10, 207, 37);
+			instanciaCantFigus.setBounds(122, 20, 207, 37);
 			panel.add(instanciaCantFigus);
 			
 			instanciaCantFigusXPaquete = new JLabel("Cantidad figuritas x paquete:");
 			instanciaCantFigusXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaCantFigusXPaquete.setBounds(373, 10, 207, 37);
+			instanciaCantFigusXPaquete.setBounds(373, 20, 207, 37);
 			panel.add(instanciaCantFigusXPaquete);
 			
 			valorCantUsuarios = new JTextField(String.valueOf(escenario.getCantUsuarios()));
 			valorCantUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			valorCantUsuarios.setEditable(false);
-			valorCantUsuarios.setBounds(78, 10, 34, 29);
+			valorCantUsuarios.setBounds(78, 20, 34, 29);
 			panel.add(valorCantUsuarios);
 			valorCantUsuarios.setColumns(10);
 			
@@ -187,16 +188,15 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 			valorCantFigus = new JTextField(String.valueOf(cantFiguritas));
 			valorCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			valorCantFigus.setEditable(false);
-			valorCantFigus.setBounds(323, 10, 34, 29);
+			valorCantFigus.setBounds(323, 20, 34, 29);
 			panel.add(valorCantFigus);
 			valorCantFigus.setColumns(10);
 			
 
-			
 			valorCantFigusXPaq = new JTextField(String.valueOf(cantFiguritasXPaquete));
 			valorCantFigusXPaq.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			valorCantFigusXPaq.setEditable(false);
-			valorCantFigusXPaq.setBounds(581, 10, 34, 29);
+			valorCantFigusXPaq.setBounds(581, 20, 34, 29);
 			panel.add(valorCantFigusXPaq);
 			valorCantFigusXPaq.setColumns(10);
 
@@ -207,7 +207,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 		btnInterrumpir = new JButton("Interrumpir proceso");
 		btnInterrumpir.setFont(new Font("Consolas", Font.BOLD, 15));
-		btnInterrumpir.setBounds(78, 162, 215, 54);
+		btnInterrumpir.setBounds(78, 179, 215, 54);
 		panel.add(btnInterrumpir);
 
 
@@ -223,7 +223,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	public void crearTextoDeEstadisticas() {
 		txtObservador = new JLabel();
 		txtObservador.setFont(new Font("Courier New", Font.PLAIN, 13));
-		txtObservador.setBounds(15, 108, 600, 40);
+		txtObservador.setBounds(15, 129, 600, 40);
 		panel.add(txtObservador);
 
 	}
@@ -231,7 +231,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	public void crearBarraProgreso() {
 		progressBar = new JProgressBar();
 		progressBar = new JProgressBar();
-		progressBar.setBounds(15, 57, 600, 40);
+		progressBar.setBounds(15, 79, 600, 40);
 		panel.add(progressBar);
 
 	}

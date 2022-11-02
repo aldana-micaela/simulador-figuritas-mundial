@@ -85,6 +85,7 @@ public class Menu {
 		frame = new JFrame("Simulador");
 		frame.setBounds(450, 150, 639, 457);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 	}
 
 	private void crearPanel() {
