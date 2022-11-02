@@ -40,6 +40,8 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private int cantFiguritas;
 	private int cantFiguritasXPaquete;
 	private Escenario escenario;
+	private int cantSimulacion;
+
 
 	private Simulador simulador;
 	private JLabel txtObservador;
@@ -63,7 +65,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 					
 					menu = new Menu();
 					
-					SimuladorInterface window = new SimuladorInterface(menu.getCantFiguritas(), menu.getCantFiguritasXPaquete(), menu.getEscenario());
+					SimuladorInterface window = new SimuladorInterface(menu.getCantFiguritas(), menu.getCantFiguritasXPaquete(), menu.getEscenario(), menu.getCantSimulaciones());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,7 +77,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	/**
 	 * Create the application.
 	 */
-	public SimuladorInterface(int cantFiguritas, int cantFiguritasXPaquete, Escenario escenario) {
+	public SimuladorInterface(int cantFiguritas, int cantFiguritasXPaquete, Escenario escenario, int  cantSimulaciones) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -85,6 +87,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		this.cantFiguritas=cantFiguritas;
 		this.cantFiguritasXPaquete=cantFiguritasXPaquete;
 		this.escenario=escenario;
+		this.cantSimulacion = cantSimulaciones;
 		
 		initialize();
 	}
@@ -131,7 +134,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	}
 
 	private void inicializarEscenario() {
-		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario);
+		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
 		simulador = new Simulador(instancia, new GeneradorRandom());
 		progressBar.setMinimum(0);
 		progressBar.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());

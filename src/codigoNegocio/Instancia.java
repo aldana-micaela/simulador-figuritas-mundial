@@ -10,15 +10,19 @@ public class Instancia {
 	private int cantFiguritasXPaquete; 
 	private Escenario escenario;
 	private int cantUsuarios;
+	private int cantSimulacion;
+
 	
 	private ArrayList<Usuario> users;
 	
 	
-	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario e) {
+	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario e, int cantSimulaciones) {
 		this.cantFiguritas=cantFiguritas;
 		this.cantFiguritasXPaquete=figuritasXPaquete;
 		this.escenario = e;
 		this.cantUsuarios= escenario.getCantUsuarios();
+		this.cantSimulacion= cantSimulaciones;
+
 		
 		users = new ArrayList<Usuario>(cantUsuarios);
 		
@@ -33,6 +37,9 @@ public class Instancia {
 
 	public int getCantFiguritasXPaquete() {
 		return cantFiguritasXPaquete;
+	}
+	public int getCantSimulacion() {
+		return cantSimulacion;
 	}
 
 	public Escenario getEscenario() {

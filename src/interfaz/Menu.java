@@ -40,6 +40,9 @@ public class Menu {
 	private JTextField cantidadFiguritasTotal;
 	private JLabel txtCantidadFiguritasTotal;
 	private JTextField cantidadUsuarios;
+	private JTextField textField;
+	private JLabel txtCantidadSimulaciones;
+	private JTextField cantSimulaciones;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -116,6 +119,8 @@ public class Menu {
 		panel.add(comboBox);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario",
 				"N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
+		
+		
 
 	}
 
@@ -138,10 +143,11 @@ public class Menu {
 
 				int cantFiguritasXpaquete = getCantFiguritasXPaquete();
 				int cantFiguritas = getCantFiguritas();
+				int cantSimulaciones =  getCantSimulaciones();
 
 				Escenario escenario = getEscenario();
 
-				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario);
+				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario,  cantSimulaciones);
 				frame.setVisible(false);
 
 			}
@@ -184,6 +190,17 @@ public class Menu {
 		cantidadFiguritasXPaquete.setBounds(270, 269, 28, 20);
 		panel.add(cantidadFiguritasXPaquete);
 		cantidadFiguritasXPaquete.setColumns(10);
+		
+		txtCantidadSimulaciones = new JLabel("Cantidad de simulaciones:");
+		txtCantidadSimulaciones.setForeground(Color.WHITE);
+		txtCantidadSimulaciones.setFont(new Font("Sitka Text", Font.PLAIN, 14));
+		txtCantidadSimulaciones.setBounds(10, 302, 247, 22);
+		panel.add(txtCantidadSimulaciones);
+		
+		cantSimulaciones = new JTextField();
+		cantSimulaciones.setColumns(10);
+		cantSimulaciones.setBounds(270, 300, 28, 20);
+		panel.add(cantSimulaciones );
 
 	}
 
@@ -208,6 +225,11 @@ public class Menu {
 		int cantFiguritas = Integer.parseInt(cantidadFiguritasTotal.getText());
 		return cantFiguritas;
 	}
+	public int getCantSimulaciones() {
+		int cantSimulacion = Integer.parseInt(cantSimulaciones.getText());
+		return cantSimulacion;
+	}
+
 
 	public int getCantFiguritasXPaquete() {
 		int cantFiguritasXpaquete = Integer.parseInt(cantidadFiguritasXPaquete.getText());
@@ -217,7 +239,4 @@ public class Menu {
 	private int getCantUsuarios() {
 		return Integer.parseInt(cantidadUsuarios.getText());
 	}
-	
-	
-	
 }
