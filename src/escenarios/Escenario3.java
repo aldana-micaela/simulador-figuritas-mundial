@@ -1,4 +1,4 @@
-Fpackage escenarios;
+package escenarios;
 
 import java.util.ArrayList;
 
