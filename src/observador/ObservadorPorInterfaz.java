@@ -29,9 +29,10 @@ public class ObservadorPorInterfaz implements Observador {
 		barra.setMinimum(0);
 		barra.setMaximum(lista.size() * (simulador.getCantFiguritas() * simulador.getUsuarios().size()));
 
-		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " Paquetes: " + paquetesGenerados());
-//				+ " Figuritas acertadas: " + acertadas(simulador) + "/"
-//				+ simulador.getCantFiguritas() * simulador.getUsuarios().size() + " (figuritas totales)");
+		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " Paquetes: " + paquetesGenerados()
+				+ " Paquetes totales: " + totalPaquetesGenerados() + " Promedio: "
+				+ totalPaquetesGenerados() / lista.size());
+
 
 		barra.setValue(total());
 
@@ -57,6 +58,15 @@ public class ObservadorPorInterfaz implements Observador {
 			}
 
 		}
+		return tot;
+	}
+
+	private int totalPaquetesGenerados() {
+		int tot = 0;
+		for (Simulador s : lista) {
+			tot = tot + s.paquetesGenerados();
+		}
+
 		return tot;
 	}
 
