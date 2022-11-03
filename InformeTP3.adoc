@@ -1,0 +1,34 @@
+= Simulador: Trabajo Practico 3 - Programación III
+:hardbreaks:
+:title-page:
+:numbered:
+:source-highlighter: coderay
+:tabsize: 4
+
+Autores:Aldana Micaela Filiberto <Aldana.filiberto17@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com>;
+Docentes: Javier Marenco, Patricia Bagnes (Com-01);
+ v1, {docdate}.
+
+
+== Introducción:
+
+El objetivo del trabajo práctico es implementar una aplicación para realizar simualciones para estimar cuánto dinero en promedio se debe gastar para
+completar el álbum de figuritas del mundial en distintos escenarios, por medio de técnicas de
+simulación.
+El álbum contiene 638 figuritas y cada paquete tiene 5 figuritas distintas. Suponemos además
+que la probabilidad de aparición de cada figurita en cada paquete es la misma, es decir que
+se imprime la misma cantidad de cada figurita y que las figuritas se reparten con distribución
+uniforme entre los paquetes. Una simulación consiste en comenzar con un álbum vacío y
+generar aleatoriamente paquetes de figuritas hasta completar el álbum, llevando la cuenta de
+cuántos paquetes fueron necesarios para terminar el procedimiento. La estimación consiste
+en realizar un número muy grande de simulaciones hasta llegar a una estimación (promedio
+de los paquetes comprados hasta finalizar el proceso) estable.
+Se pide realizar simulaciones en los siguientes escenarios:
+1. Un único usuario que busca completar un álbum.
+2. Una cantidad n de usuarios que buscan completar un álbum cada uno. Cuando un
+usuario obtiene una figurita repetida (es decir, una figurita que ya tiene en su álbum),
+se la dona a otro usuario que la necesite sin obtener nada a cambio. El proceso termina
+cuando todos los usuarios completaron sus álbumes.
+3. Una cantidad n de usuarios que buscan completar un álbum cada uno. Cuando dos
+usuarios obtienen una figurita repetida cada uno, las pueden intercambiar entre sí. El
+proceso termina cuando todos los usuarios completaron sus álbumes.
