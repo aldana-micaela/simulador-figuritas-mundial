@@ -37,7 +37,7 @@ public class Solucion extends Thread {
 		for (int i = 0; i < lista.size(); i++) {
 
 			try {
-				Thread.sleep(10);
+				Thread.sleep(100);
 				lista.get(i).simular();
 
 				System.out.println(lista.get(i).paquetesGenerados());
