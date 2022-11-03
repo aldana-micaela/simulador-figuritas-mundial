@@ -13,9 +13,10 @@ import javax.swing.UIManager;
 
 import codigoNegocio.Instancia;
 import codigoNegocio.Simulador;
+import codigoNegocio.Solucion;
 import codigoNegocio.Usuario;
 import escenarios.Escenario;
-
+import generador.Generador;
 import generador.GeneradorRandom;
 import observador.Observador;
 import observador.ObservadorGrafico;
@@ -40,13 +41,11 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private Escenario escenario;
 	private int cantSimulacion;
 
-	private Simulador simulador;
-	private ArrayList<Simulador> simulaciones;
+	private Solucion soluciones;
+
 	private JLabel txtObservador;
-	private Instancia instancia;
 
 	private JProgressBar progressBar;
-	private Observador observador;
 	private JButton btnVerGrafico;
 	private JButton btnInterrumpir;
 
@@ -141,73 +140,66 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	}
 
 	private void inicializarEscenario() {
-		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
+
+		soluciones = new Solucion(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
+		Observador ob= new ObservadorPorInterfaz(soluciones.getLista(), txtObservador, progressBar);
+		soluciones.registrarObservador(ob);
 		
-		for(int i=0; i< cantSimulacion; i++) {
-			simulador = new Simulador(instancia, new GeneradorRandom(),  i);
-
-
-			observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
-
-			simulador.registrarObservador(observador);
-			simulador.start();
-
-		}
+		soluciones.start();
+		
+		
 		
 	}
+
 
 	private void eventoBotonGrafico() {
 		btnVerGrafico.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
-				simulador.interrupt();
-				new ObservadorGrafico(simulador).notificar();
+
+				 new ObservadorGrafico(soluciones.getLista()).notificar();
 
 			}
 		});
 	}
-	
+
 	private void crearTextoInstanciaSeleccionada() {
-			instanciaSeleccionadaUsuario = new JLabel("Usuarios:");
-			instanciaSeleccionadaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaSeleccionadaUsuario.setBounds(15, 20, 207, 37);
-			panel.add(instanciaSeleccionadaUsuario);
-			
-			instanciaCantFigus = new JLabel("Cantidad figuritas del album:");
-			instanciaCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaCantFigus.setBounds(122, 20, 207, 37);
-			panel.add(instanciaCantFigus);
-			
-			instanciaCantFigusXPaquete = new JLabel("Cantidad figuritas x paquete:");
-			instanciaCantFigusXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			instanciaCantFigusXPaquete.setBounds(373, 20, 207, 37);
-			panel.add(instanciaCantFigusXPaquete);
-			
-			valorCantUsuarios = new JTextField(String.valueOf(escenario.getCantUsuarios()));
-			valorCantUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			valorCantUsuarios.setEditable(false);
-			valorCantUsuarios.setBounds(78, 20, 34, 29);
-			panel.add(valorCantUsuarios);
-			valorCantUsuarios.setColumns(10);
-			
-		
-			valorCantFigus = new JTextField(String.valueOf(cantFiguritas));
-			valorCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			valorCantFigus.setEditable(false);
-			valorCantFigus.setBounds(323, 20, 34, 29);
-			panel.add(valorCantFigus);
-			valorCantFigus.setColumns(10);
-			
+		instanciaSeleccionadaUsuario = new JLabel("Usuarios:");
+		instanciaSeleccionadaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		instanciaSeleccionadaUsuario.setBounds(15, 20, 207, 37);
+		panel.add(instanciaSeleccionadaUsuario);
 
-			valorCantFigusXPaq = new JTextField(String.valueOf(cantFiguritasXPaquete));
-			valorCantFigusXPaq.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			valorCantFigusXPaq.setEditable(false);
-			valorCantFigusXPaq.setBounds(581, 20, 34, 29);
-			panel.add(valorCantFigusXPaq);
-			valorCantFigusXPaq.setColumns(10);
+		instanciaCantFigus = new JLabel("Cantidad figuritas del album:");
+		instanciaCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		instanciaCantFigus.setBounds(122, 20, 207, 37);
+		panel.add(instanciaCantFigus);
 
-			
+		instanciaCantFigusXPaquete = new JLabel("Cantidad figuritas x paquete:");
+		instanciaCantFigusXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		instanciaCantFigusXPaquete.setBounds(373, 20, 207, 37);
+		panel.add(instanciaCantFigusXPaquete);
+
+		valorCantUsuarios = new JTextField(String.valueOf(escenario.getCantUsuarios()));
+		valorCantUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		valorCantUsuarios.setEditable(false);
+		valorCantUsuarios.setBounds(78, 20, 34, 29);
+		panel.add(valorCantUsuarios);
+		valorCantUsuarios.setColumns(10);
+
+		valorCantFigus = new JTextField(String.valueOf(cantFiguritas));
+		valorCantFigus.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		valorCantFigus.setEditable(false);
+		valorCantFigus.setBounds(323, 20, 34, 29);
+		panel.add(valorCantFigus);
+		valorCantFigus.setColumns(10);
+
+		valorCantFigusXPaq = new JTextField(String.valueOf(cantFiguritasXPaquete));
+		valorCantFigusXPaq.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		valorCantFigusXPaq.setEditable(false);
+		valorCantFigusXPaq.setBounds(581, 20, 34, 29);
+		panel.add(valorCantFigusXPaq);
+		valorCantFigusXPaq.setColumns(10);
+
 	}
 
 	public void crearBtnInterrumpirProceso() {
@@ -217,11 +209,8 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		btnInterrumpir.setBounds(78, 179, 215, 54);
 		panel.add(btnInterrumpir);
 
-
 		btnInterrumpir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				simulador.interrupt();
 
 			}
 		});

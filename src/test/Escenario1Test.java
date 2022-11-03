@@ -24,7 +24,7 @@ public class Escenario1Test {
 		int cantFiguritasXPaquete=5;
 		
 		escenario1 = new Escenario1();
-		instancia = new Instancia(10, cantFiguritasXPaquete, escenario1, 10);
+		instancia = new Instancia(10, cantFiguritasXPaquete, escenario1);
 		generador = new GeneradorPrefijado(cantFiguritasXPaquete);
 
 		usuarios = new ArrayList<Usuario>();

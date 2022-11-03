@@ -1,5 +1,7 @@
 package observador;
 
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -11,44 +13,58 @@ public class ObservadorPorInterfaz implements Observador {
 	private Simulador simulador;
 	private JLabel label;
 	private JProgressBar barra;
-	int figuritasAcertadas=0;
 
-	public ObservadorPorInterfaz(Simulador s, JLabel label, JProgressBar barra) {
-		this.simulador = s;
+	ArrayList<Simulador> lista;
+
+	public ObservadorPorInterfaz(ArrayList<Simulador> s, JLabel label, JProgressBar barra) {
 		this.label = label;
 		this.barra = barra;
-		
+		this.lista = s;
+
 	}
 
 	@Override
 	public void notificar() {
 
 		barra.setMinimum(0);
-		barra.setMaximum(simulador.getUsuarios().size() * simulador.getCantFiguritas());
+		barra.setMaximum(lista.size() * (simulador.getCantFiguritas() * simulador.getUsuarios().size()));
 
+		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " Paquetes: " + paquetesGenerados());
+//				+ " Figuritas acertadas: " + acertadas(simulador) + "/"
+//				+ simulador.getCantFiguritas() * simulador.getUsuarios().size() + " (figuritas totales)");
 
-		label.setText(" Paquetes: " + paquetesGenerados() + " Figuritas acertadas: "
-				+ total()+ "/" + simulador.getCantFiguritas() * simulador.getUsuarios().size() + " (figuritas totales)");
-		
 		barra.setValue(total());
 
 	}
-	
-	private int total() {
-		int tot=0;
-		for(Usuario u: simulador.getUsuarios()) {
-			tot= tot+u.getFiguritasAcertadas();
+
+	public void settear(int i) {
+		this.simulador = lista.get(i);
+	}
+
+	private int acertadas(Simulador s) {
+		int tot = 0;
+		for (Usuario u : s.getUsuarios()) {
+			tot = tot + u.getFiguritasAcertadas();
 		}
 		return tot;
 	}
-	
+
+	private int total() {
+		int tot = 0;
+		for (Simulador s : lista) {
+			for (Usuario u : s.getUsuarios()) {
+				tot = tot + u.getFiguritasAcertadas();
+			}
+
+		}
+		return tot;
+	}
+
 	private int paquetesGenerados() {
-		int i=0;
-		for (Usuario u: simulador.getUsuarios())
+		int i = 0;
+		for (Usuario u : simulador.getUsuarios())
 			i = i + u.getPaquetes();
 		return i;
 	}
-	
-	
 
 }

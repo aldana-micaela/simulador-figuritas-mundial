@@ -6,52 +6,41 @@ import escenarios.Escenario;
 import generador.Generador;
 import observador.Observador;
 
-public class Simulador extends Thread {
+public class Simulador extends Thread{
 
 	private Instancia instancia;
 	private Generador generador;
 	private int iteracion;
-	private int[]cantIteraciones;
-	private int numero;
 
 	private ArrayList<Observador> observadores;
 
-	public Simulador(Instancia i, Generador g, int cant) {
+	public Simulador(Instancia i, Generador g, int numero) {
 		this.instancia = i;
 		this.generador = g;
-		iteracion = 1;
-		this.cantIteraciones=new int[instancia.getCantSimulacion()];
+		iteracion = numero;
 
 		observadores = new ArrayList<Observador>();
-        this.numero=cant;
 	}
 
 	public void simular() {
-		
-			
-		
-		try {			  
-			  while (!todosCompletos()) {
 
-					Thread.sleep(100);
-					getEscenario().simular( generador, getUsuarios());
-					notificarObservadores();
-					iteracion++;
-		  }
-			  
-			  } catch (InterruptedException e) {
-			//e.printStackTrace();
-			System.out.println("Proceso interrumpido");
-		}
+			while (!todosCompletos()) {
+//				try {
+//					Thread.sleep(50);
+					getEscenario().simular(generador, getUsuarios());
+					//notificarObservadores();
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+			}
+
 	}
-	
-		
 
 	private void notificarObservadores() {
 		for (Observador o : observadores)
 			o.notificar();
-		    
-		   
+
 	}
 
 	public void registrarObservador(Observador o) {
@@ -85,7 +74,7 @@ public class Simulador extends Thread {
 		return instancia.getCantFiguritas();
 	}
 
-	public int getIteracion() {
+	public int getNumeroSimulacion() {
 		return iteracion;
 	}
 
@@ -93,20 +82,16 @@ public class Simulador extends Thread {
 		return instancia;
 	}
 
-	@Override
-	public void run() {
-		
-			simular();
-	
+	public int paquetesGenerados() {
+		int i = 0;
+		for (Usuario u : getUsuarios())
+			i = i + u.getPaquetes();
+		return i;
 	}
 
-	public int getCantSimulaciones() {
-		// TODO Auto-generated method stub
-		return instancia.getCantSimulacion();
-	}
+//	@Override
+//	public void run() {
+//		simular();
+//	}
 
-	public int[] cantSimulaciones() {
-		return cantIteraciones;
-		
-	}
 }

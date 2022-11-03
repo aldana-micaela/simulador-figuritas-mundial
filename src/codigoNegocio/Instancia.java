@@ -16,12 +16,11 @@ public class Instancia {
 	private ArrayList<Usuario> users;
 	
 	
-	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario e, int cantSimulaciones) {
+	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario e) {
 		this.cantFiguritas=cantFiguritas;
 		this.cantFiguritasXPaquete=figuritasXPaquete;
 		this.escenario = e;
 		this.cantUsuarios= escenario.getCantUsuarios();
-		this.cantSimulacion= cantSimulaciones;
 
 		
 		users = new ArrayList<Usuario>(cantUsuarios);
