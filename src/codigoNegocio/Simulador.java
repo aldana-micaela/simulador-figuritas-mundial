@@ -11,6 +11,7 @@ public class Simulador extends Thread {
 	private Instancia instancia;
 	private Generador generador;
 	private int iteracion;
+	private int[]cantIteraciones;
 
 	private ArrayList<Observador> observadores;
 
@@ -18,6 +19,7 @@ public class Simulador extends Thread {
 		this.instancia = i;
 		this.generador = g;
 		iteracion = 1;
+		this.cantIteraciones=new int[instancia.getCantSimulacion()];
 
 		observadores = new ArrayList<Observador>();
 
@@ -25,6 +27,8 @@ public class Simulador extends Thread {
 
 	public void simular() {
 
+		for(int i=1; i<=getCantSimulaciones(); i++) {
+			iteracion=0;
 		
 		try {			  
 		 
@@ -34,14 +38,13 @@ public class Simulador extends Thread {
 					getEscenario().simular( generador, getUsuarios());
 					notificarObservadores();
 					iteracion++;
-		 		
-			
 		  }
-		} catch (InterruptedException e) {
+			  cantIteraciones[i]=iteracion;
+			  } catch (InterruptedException e) {
 			//e.printStackTrace();
 			System.out.println("Proceso interrumpido");
 		}
-
+		}
 	}
 		
 
@@ -97,4 +100,13 @@ public class Simulador extends Thread {
 		simular();
 	}
 
+	public int getCantSimulaciones() {
+		// TODO Auto-generated method stub
+		return instancia.getCantSimulacion();
+	}
+
+	public int[] cantSimulaciones() {
+		return cantIteraciones;
+		
+	}
 }
