@@ -27,9 +27,10 @@ public class Simulador extends Thread {
 	}
 
 	public void simular() {
-
+		
+			
+		
 		try {			  
-		 
 			  while (!todosCompletos()) {
 
 					Thread.sleep(100);
@@ -42,7 +43,7 @@ public class Simulador extends Thread {
 			//e.printStackTrace();
 			System.out.println("Proceso interrumpido");
 		}
-		}
+	}
 	
 		
 
@@ -94,8 +95,9 @@ public class Simulador extends Thread {
 
 	@Override
 	public void run() {
-
-		simular();
+		
+			simular();
+	
 	}
 
 	public int getCantSimulaciones() {
