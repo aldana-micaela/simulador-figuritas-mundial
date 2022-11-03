@@ -5,29 +5,26 @@ import java.util.ArrayList;
 import escenarios.Escenario;
 
 public class Instancia {
-	
+
 	private int cantFiguritas;
-	private int cantFiguritasXPaquete; 
+	private int cantFiguritasXPaquete;
 	private Escenario escenario;
 	private int cantUsuarios;
 	private int cantSimulacion;
 
-	
 	private ArrayList<Usuario> users;
-	
-	
-	public Instancia (int cantFiguritas, int figuritasXPaquete, Escenario e) {
-		this.cantFiguritas=cantFiguritas;
-		this.cantFiguritasXPaquete=figuritasXPaquete;
-		this.escenario = e;
-		this.cantUsuarios= escenario.getCantUsuarios();
 
-		
+	public Instancia(int cantFiguritas, int figuritasXPaquete, Escenario e) {
+		this.cantFiguritas = cantFiguritas;
+		this.cantFiguritasXPaquete = figuritasXPaquete;
+		this.escenario = e;
+		this.cantUsuarios = escenario.getCantUsuarios();
+
 		users = new ArrayList<Usuario>(cantUsuarios);
-		
-		for(int i =1; i<=cantUsuarios; i++)
+
+		for (int i = 1; i <= cantUsuarios; i++)
 			users.add(new Usuario(this, i));
-		
+
 	}
 
 	public int getCantFiguritas() {
@@ -37,6 +34,7 @@ public class Instancia {
 	public int getCantFiguritasXPaquete() {
 		return cantFiguritasXPaquete;
 	}
+
 	public int getCantSimulacion() {
 		return cantSimulacion;
 	}
@@ -44,14 +42,9 @@ public class Instancia {
 	public Escenario getEscenario() {
 		return escenario;
 	}
-	
-	public ArrayList <Usuario> getUsers() {
+
+	public ArrayList<Usuario> getUsers() {
 		return users;
 	}
-	
-
-
-	
-	
 
 }

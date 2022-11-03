@@ -33,7 +33,6 @@ public class ObservadorPorInterfaz implements Observador {
 				+ " Paquetes totales: " + totalPaquetesGenerados() + " Promedio: "
 				+ totalPaquetesGenerados() / lista.size());
 
-
 		barra.setValue(total());
 
 	}
@@ -42,9 +41,9 @@ public class ObservadorPorInterfaz implements Observador {
 		this.simulador = lista.get(i);
 	}
 
-	private int acertadas(Simulador s) {
+	private int acertadas() {
 		int tot = 0;
-		for (Usuario u : s.getUsuarios()) {
+		for (Usuario u : simulador.getUsuarios()) {
 			tot = tot + u.getFiguritasAcertadas();
 		}
 		return tot;

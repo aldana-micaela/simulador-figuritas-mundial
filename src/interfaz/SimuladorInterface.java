@@ -142,22 +142,19 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private void inicializarEscenario() {
 
 		soluciones = new Solucion(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
-		Observador ob= new ObservadorPorInterfaz(soluciones.getLista(), txtObservador, progressBar);
+		Observador ob = new ObservadorPorInterfaz(soluciones.getLista(), txtObservador, progressBar);
 		soluciones.registrarObservador(ob);
-		
-		soluciones.start();
-		
-		
-		
-	}
 
+		soluciones.start();
+
+	}
 
 	private void eventoBotonGrafico() {
 		btnVerGrafico.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				 new ObservadorGrafico(soluciones.getLista()).notificar();
+				new ObservadorGrafico(soluciones.getLista()).notificar();
 
 			}
 		});

@@ -3,15 +3,12 @@ package generador;
 import java.util.Random;
 
 public class GeneradorRandom implements Generador {
-	
-	
+
 	private Random random;
-	
+
 	public GeneradorRandom() {
-		this.random= new Random();
+		this.random = new Random();
 	}
-	
-	
 
 	@Override
 	public int nextInt(int rango) {
@@ -22,7 +19,5 @@ public class GeneradorRandom implements Generador {
 	public boolean nextBoolean() {
 		return random.nextBoolean();
 	}
-	
-	
 
 }

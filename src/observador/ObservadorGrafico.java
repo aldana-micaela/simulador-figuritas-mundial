@@ -48,8 +48,7 @@ public class ObservadorGrafico implements Observador {
 	@Override
 	public void settear(int set) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

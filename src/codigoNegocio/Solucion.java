@@ -28,30 +28,29 @@ public class Solucion extends Thread {
 		this.cantFiguritasXPaquete = cantFiguritasXPaquete;
 		this.escenario = e;
 		this.observadores = new ArrayList<Observador>();
-		
+
 		agregarSimuladores();
 	}
 
 	public void ejecutar() {
 
 		for (int i = 0; i < lista.size(); i++) {
-			
+
 			try {
-				Thread.sleep(400);
+				Thread.sleep(100);
 				lista.get(i).simular();
-				
+
 				System.out.println(lista.get(i).paquetesGenerados());
-				
+
 				settearObservador(i);
 				notificarObservadores();
-				
+
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			}
 
+		}
 
 	}
 
@@ -76,7 +75,7 @@ public class Solucion extends Thread {
 	public void registrarObservador(Observador o) {
 		observadores.add(o);
 	}
-	
+
 	private void settearObservador(int set) {
 		for (int i = 0; i < observadores.size(); i++) {
 			observadores.get(i).settear(set);

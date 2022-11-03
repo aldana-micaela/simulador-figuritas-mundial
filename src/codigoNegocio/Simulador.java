@@ -6,7 +6,7 @@ import escenarios.Escenario;
 import generador.Generador;
 import observador.Observador;
 
-public class Simulador extends Thread{
+public class Simulador extends Thread {
 
 	private Instancia instancia;
 	private Generador generador;
@@ -24,16 +24,16 @@ public class Simulador extends Thread{
 
 	public void simular() {
 
-			while (!todosCompletos()) {
+		while (!todosCompletos()) {
 //				try {
 //					Thread.sleep(50);
-					getEscenario().simular(generador, getUsuarios());
-					//notificarObservadores();
+			getEscenario().simular(generador, getUsuarios());
+			// notificarObservadores();
 //				} catch (InterruptedException e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-			}
+		}
 
 	}
 

@@ -2,7 +2,6 @@ package interfaz;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -117,7 +116,7 @@ public class Menu {
 		panel.add(comboBox);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Un solo usuario",
 				"N usuarios que donan figuritas", "N usuarios que intercambian figuritas" }));
-		
+
 	}
 
 	private void crearbotonDeIniciar() {
@@ -133,15 +132,14 @@ public class Menu {
 
 				int cantFiguritasXpaquete = getCantFiguritasXPaquete();
 				int cantFiguritas = getCantFiguritas();
-				int cantSimulaciones =  getCantSimulaciones();
+				int cantSimulaciones = getCantSimulaciones();
 
 				Escenario escenario = getEscenario();
 
-				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario,  cantSimulaciones);
+				new SimuladorInterface(cantFiguritas, cantFiguritasXpaquete, escenario, cantSimulaciones);
 				frame.setVisible(false);
 
 			}
-
 
 		});
 
@@ -183,24 +181,23 @@ public class Menu {
 		cantidadFiguritasXPaquete.setBounds(270, 269, 49, 20);
 		panel.add(cantidadFiguritasXPaquete);
 		cantidadFiguritasXPaquete.setColumns(10);
-		
+
 		txtCantidadSimulaciones = new JLabel("Cantidad de simulaciones:");
 		txtCantidadSimulaciones.setForeground(Color.WHITE);
 		txtCantidadSimulaciones.setFont(new Font("Sitka Text", Font.PLAIN, 14));
 		txtCantidadSimulaciones.setBounds(10, 302, 247, 22);
 		panel.add(txtCantidadSimulaciones);
-		
+
 		cantSimulaciones = new JTextField("5");
 		cantSimulaciones.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cantSimulaciones.setColumns(10);
 		cantSimulaciones.setBounds(270, 300, 49, 20);
-		panel.add(cantSimulaciones );
+		panel.add(cantSimulaciones);
 
 	}
 
-
 	public Escenario getEscenario() {
-		
+
 		Escenario escenario;
 		if (getEscenarioSeleccionado() == 0)
 			escenario = new Escenario1();
@@ -210,7 +207,7 @@ public class Menu {
 			escenario = new Escenario3(getCantUsuarios());
 		return escenario;
 	}
-	
+
 	private int getEscenarioSeleccionado() {
 		return comboBox.getSelectedIndex();
 	}
@@ -219,6 +216,7 @@ public class Menu {
 		int cantFiguritas = Integer.parseInt(cantidadFiguritasTotal.getText());
 		return cantFiguritas;
 	}
+
 	public int getCantSimulaciones() {
 		int cantSimulacion = Integer.parseInt(cantSimulaciones.getText());
 		return cantSimulacion;
