@@ -12,24 +12,22 @@ public class Simulador extends Thread {
 	private Generador generador;
 	private int iteracion;
 	private int[]cantIteraciones;
+	private int numero;
 
 	private ArrayList<Observador> observadores;
 
-	public Simulador(Instancia i, Generador g) {
+	public Simulador(Instancia i, Generador g, int cant) {
 		this.instancia = i;
 		this.generador = g;
 		iteracion = 1;
 		this.cantIteraciones=new int[instancia.getCantSimulacion()];
 
 		observadores = new ArrayList<Observador>();
-
+        this.numero=cant;
 	}
 
 	public void simular() {
 
-		for(int i=1; i<=getCantSimulaciones(); i++) {
-			iteracion=0;
-		
 		try {			  
 		 
 			  while (!todosCompletos()) {
@@ -39,13 +37,13 @@ public class Simulador extends Thread {
 					notificarObservadores();
 					iteracion++;
 		  }
-			  cantIteraciones[i]=iteracion;
+			  
 			  } catch (InterruptedException e) {
 			//e.printStackTrace();
 			System.out.println("Proceso interrumpido");
 		}
 		}
-	}
+	
 		
 
 	private void notificarObservadores() {

@@ -24,6 +24,7 @@ import observador.ObservadorPorInterfaz;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -40,6 +41,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private int cantSimulacion;
 
 	private Simulador simulador;
+	private ArrayList<Simulador> simulaciones;
 	private JLabel txtObservador;
 	private Instancia instancia;
 
@@ -140,13 +142,18 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private void inicializarEscenario() {
 		instancia = new Instancia(cantFiguritas, cantFiguritasXPaquete, escenario, cantSimulacion);
-		simulador = new Simulador(instancia, new GeneradorRandom());
+		
+		for(int i=0; i< cantSimulacion; i++) {
+			simulador = new Simulador(instancia, new GeneradorRandom(),  i);
 
-		observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
 
-		simulador.registrarObservador(observador);
-		simulador.start();
+			observador = new ObservadorPorInterfaz(simulador, txtObservador, progressBar);
 
+			simulador.registrarObservador(observador);
+			simulador.start();
+
+		}
+		
 	}
 
 	private void eventoBotonGrafico() {

@@ -30,10 +30,9 @@ public class ObservadorGrafico implements Observador{
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 		datos = new DefaultCategoryDataset();
-//		for (Usuario u : simulador.getUsuarios()) {
-		for (int u : simulador.cantSimulaciones()) {
+		for (Usuario u : simulador.getUsuarios()) {
 		    for(int i=0; i<simulador.getCantSimulaciones(); i++)
-			datos.addValue(u, "Paquetes: " + u + "", "Simulación" + i);
+			datos.addValue(u.getPaquetes(), "Paquetes: " + simulador.getIteracion() + "", "Simulación" + i);
 		}
 		grafico = ChartFactory.createBarChart("Paquetes vendidos en total", "Figuritas", "Paquetes vendidos",
 				datos, PlotOrientation.VERTICAL, true, false, false);
