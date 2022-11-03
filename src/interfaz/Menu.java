@@ -190,7 +190,7 @@ public class Menu {
 		txtCantidadSimulaciones.setBounds(10, 302, 247, 22);
 		panel.add(txtCantidadSimulaciones);
 		
-		cantSimulaciones = new JTextField("10");
+		cantSimulaciones = new JTextField("5");
 		cantSimulaciones.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cantSimulaciones.setColumns(10);
 		cantSimulaciones.setBounds(270, 300, 49, 20);
