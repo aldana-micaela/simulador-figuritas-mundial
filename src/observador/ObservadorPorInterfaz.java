@@ -14,12 +14,12 @@ public class ObservadorPorInterfaz implements Observador {
 	private JLabel label;
 	private JProgressBar barra;
 
-	ArrayList<Simulador> lista;
+	ArrayList<Simulador> listaSimulaciones;
 
 	public ObservadorPorInterfaz(ArrayList<Simulador> s, JLabel label, JProgressBar barra) {
 		this.label = label;
 		this.barra = barra;
-		this.lista = s;
+		this.listaSimulaciones = s;
 
 	}
 
@@ -27,18 +27,18 @@ public class ObservadorPorInterfaz implements Observador {
 	public void notificar() {
 
 		barra.setMinimum(0);
-		barra.setMaximum(lista.size() * (simulador.getCantFiguritas() * simulador.getUsuarios().size()));
+		barra.setMaximum(listaSimulaciones.size() * (simulador.getCantFiguritas() * simulador.getUsuarios().size()));
 
 		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " Paquetes: " + paquetesGenerados()
 				+ " Paquetes totales: " + totalPaquetesGenerados() + " Promedio: "
-				+ totalPaquetesGenerados() / lista.size());
+				+ totalPaquetesGenerados() / listaSimulaciones.size());
 
 		barra.setValue(total());
 
 	}
 
 	public void settear(int i) {
-		this.simulador = lista.get(i);
+		this.simulador = listaSimulaciones.get(i);
 	}
 
 	private int acertadas() {
@@ -51,7 +51,7 @@ public class ObservadorPorInterfaz implements Observador {
 
 	private int total() {
 		int tot = 0;
-		for (Simulador s : lista) {
+		for (Simulador s : listaSimulaciones) {
 			for (Usuario u : s.getUsuarios()) {
 				tot = tot + u.getFiguritasAcertadas();
 			}
@@ -62,7 +62,7 @@ public class ObservadorPorInterfaz implements Observador {
 
 	private int totalPaquetesGenerados() {
 		int tot = 0;
-		for (Simulador s : lista) {
+		for (Simulador s : listaSimulaciones) {
 			tot = tot + s.paquetesGenerados();
 		}
 
