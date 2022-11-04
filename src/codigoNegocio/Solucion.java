@@ -14,10 +14,8 @@ public class Solucion extends Thread {
 	private int cantSoluciones;
 	private int cantFiguritas;
 	private int cantFiguritasXPaquete;
-
 	private Generador generador;
 	private Escenario escenario;
-
 	private ArrayList<Observador> observadores;
 
 	public Solucion(int cantFiguritas, int cantFiguritasXPaquete, Escenario e, int cant) {
@@ -46,7 +44,6 @@ public class Solucion extends Thread {
 				notificarObservadores();
 
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

@@ -35,7 +35,21 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private JFrame frame;
 	private JPanel panel;
+	private JLabel txtObservador;
+	private JProgressBar progressBar;
+	private JButton btnVerGrafico;
+	private JButton btnInterrumpir;
+	private JLabel instanciaSeleccionadaUsuario;
+	private JTextField valorCantUsuarios;
+	private JLabel instanciaCantFigus;
+	private JLabel instanciaCantFigusXPaquete;
+	private JTextField valorCantFigus;
+	private JTextField valorCantFigusXPaq;
+	private JLabel lblSimulaciones;
+	private JTextField valorCantSimulaciones;
 
+	private static Menu menu;
+	
 	private int cantFiguritas;
 	private int cantFiguritasXPaquete;
 	private Escenario escenario;
@@ -43,19 +57,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 	private Solucion soluciones;
 
-	private JLabel txtObservador;
 
-	private JProgressBar progressBar;
-	private JButton btnVerGrafico;
-	private JButton btnInterrumpir;
-
-	private static Menu menu;
-	private JLabel instanciaSeleccionadaUsuario;
-	private JTextField valorCantUsuarios;
-	private JLabel instanciaCantFigus;
-	private JLabel instanciaCantFigusXPaquete;
-	private JTextField valorCantFigus;
-	private JTextField valorCantFigusXPaq;
 
 	/**
 	 * Launch the application.
@@ -107,8 +109,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		inicializarEscenario();
 		crearBotonGrafico();
 		eventoBotonGrafico();
-
-		crearBtnInterrumpirProceso();
+		//crearBtnInterrumpirProceso();
 
 	}
 
@@ -116,14 +117,14 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		btnVerGrafico = new JButton("Ver Grafico");
 		btnVerGrafico.setFont(new Font("Consolas", Font.BOLD, 15));
 
-		btnVerGrafico.setBounds(347, 179, 191, 54);
+		btnVerGrafico.setBounds(311, 179, 191, 54);
 		panel.add(btnVerGrafico);
 
 	}
 
 	private void crearFrame() {
 		frame = new JFrame("Simulador");
-		frame.setBounds(450, 150, 639, 288);
+		frame.setBounds(350, 150, 809, 288);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -171,6 +172,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		instanciaCantFigus.setBounds(122, 20, 207, 37);
 		panel.add(instanciaCantFigus);
 
+		
 		instanciaCantFigusXPaquete = new JLabel("Cantidad figuritas x paquete:");
 		instanciaCantFigusXPaquete.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		instanciaCantFigusXPaquete.setBounds(373, 20, 207, 37);
@@ -196,18 +198,34 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		valorCantFigusXPaq.setBounds(581, 20, 34, 29);
 		panel.add(valorCantFigusXPaq);
 		valorCantFigusXPaq.setColumns(10);
+		
+		lblSimulaciones = new JLabel("Simulaciones:");
+		lblSimulaciones.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSimulaciones.setBounds(625, 20, 102, 37);
+		panel.add(lblSimulaciones);
 
+		valorCantSimulaciones = new JTextField(String.valueOf(cantSimulacion));
+		valorCantSimulaciones.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		valorCantSimulaciones.setEditable(false);
+		valorCantSimulaciones.setColumns(10);
+		valorCantSimulaciones.setBounds(748, 20, 34, 29);
+		panel.add(valorCantSimulaciones);
+		
 	}
 
 	public void crearBtnInterrumpirProceso() {
 
 		btnInterrumpir = new JButton("Interrumpir proceso");
 		btnInterrumpir.setFont(new Font("Consolas", Font.BOLD, 15));
-		btnInterrumpir.setBounds(78, 179, 215, 54);
+		btnInterrumpir.setBounds(159, 179, 215, 54);
 		panel.add(btnInterrumpir);
+		
 
 		btnInterrumpir.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
+				
+				soluciones.interrupted();
 
 			}
 		});
@@ -224,7 +242,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	public void crearBarraProgreso() {
 		progressBar = new JProgressBar();
 		progressBar = new JProgressBar();
-		progressBar.setBounds(15, 79, 600, 40);
+		progressBar.setBounds(15, 79, 767, 40);
 		panel.add(progressBar);
 
 	}

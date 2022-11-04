@@ -6,20 +6,17 @@ import escenarios.Escenario;
 import generador.Generador;
 import observador.Observador;
 
-public class Simulador extends Thread {
+public class Simulador {
 
 	private Instancia instancia;
 	private Generador generador;
 	private int iteracion;
-
-	private ArrayList<Observador> observadores;
 
 	public Simulador(Instancia i, Generador g, int numero) {
 		this.instancia = i;
 		this.generador = g;
 		iteracion = numero;
 
-		observadores = new ArrayList<Observador>();
 	}
 
 	public void simular() {
@@ -35,16 +32,6 @@ public class Simulador extends Thread {
 //				}
 		}
 
-	}
-
-	private void notificarObservadores() {
-		for (Observador o : observadores)
-			o.notificar();
-
-	}
-
-	public void registrarObservador(Observador o) {
-		observadores.add(o);
 	}
 
 	public Escenario getEscenario() {
