@@ -1,4 +1,4 @@
-package codigoNegocio;
+package simuladores;
 
 public class Usuario {
 
@@ -9,7 +9,6 @@ public class Usuario {
 	private int paquetes;
 	private int donadas;
 	private int intercambiadas;
-
 	private Instancia instancia;
 
 	public Usuario(Instancia instancia, int i) {
@@ -98,9 +97,9 @@ public class Usuario {
 	public int getCantFiguritasRepetidas() {
 		int i = 0;
 
-		for (int j = 0; j < albumFiguritas.length; j++)
-			;
-		i = i + figuritasRepetidas[i];
+		for (int j = 0; j < albumFiguritas.length; j++) 
+				i = i + figuritasRepetidas[j];
+		
 
 		return i;
 

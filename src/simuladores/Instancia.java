@@ -1,4 +1,4 @@
-package codigoNegocio;
+package simuladores;
 
 import java.util.ArrayList;
 

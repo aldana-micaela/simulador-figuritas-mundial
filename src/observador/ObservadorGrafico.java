@@ -3,13 +3,14 @@ package observador;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import codigoNegocio.Simulador;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import simuladores.Simulador;
 
 public class ObservadorGrafico implements Observador {
 

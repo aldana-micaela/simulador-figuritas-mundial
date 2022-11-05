@@ -11,16 +11,16 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
-import codigoNegocio.Instancia;
-import codigoNegocio.Simulador;
-import codigoNegocio.Solucion;
-import codigoNegocio.Usuario;
 import escenarios.Escenario;
 import generador.Generador;
 import generador.GeneradorRandom;
 import observador.Observador;
 import observador.ObservadorGrafico;
 import observador.ObservadorPorInterfaz;
+import simuladores.Instancia;
+import simuladores.Simulador;
+import simuladores.Solucion;
+import simuladores.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -38,7 +38,6 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private JLabel txtObservador;
 	private JProgressBar progressBar;
 	private JButton btnVerGrafico;
-	private JButton btnInterrumpir;
 	private JLabel instanciaSeleccionadaUsuario;
 	private JTextField valorCantUsuarios;
 	private JLabel instanciaCantFigus;
@@ -56,7 +55,6 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 	private int cantSimulacion;
 
 	private Solucion soluciones;
-
 
 
 	/**
@@ -109,7 +107,6 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		inicializarEscenario();
 		crearBotonGrafico();
 		eventoBotonGrafico();
-		//crearBtnInterrumpirProceso();
 
 	}
 
@@ -211,24 +208,6 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		valorCantSimulaciones.setBounds(748, 20, 34, 29);
 		panel.add(valorCantSimulaciones);
 		
-	}
-
-	public void crearBtnInterrumpirProceso() {
-
-		btnInterrumpir = new JButton("Interrumpir proceso");
-		btnInterrumpir.setFont(new Font("Consolas", Font.BOLD, 15));
-		btnInterrumpir.setBounds(159, 179, 215, 54);
-		panel.add(btnInterrumpir);
-		
-
-		btnInterrumpir.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
-			public void actionPerformed(ActionEvent e) {
-				
-				soluciones.interrupted();
-
-			}
-		});
 	}
 
 	public void crearTextoDeEstadisticas() {

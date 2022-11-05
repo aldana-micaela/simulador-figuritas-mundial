@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
-import codigoNegocio.Simulador;
-import codigoNegocio.Usuario;
+import simuladores.Simulador;
+import simuladores.Usuario;
 
 public class ObservadorPorInterfaz implements Observador {
 
@@ -29,8 +29,8 @@ public class ObservadorPorInterfaz implements Observador {
 		barra.setMinimum(0);
 		barra.setMaximum(listaSimulaciones.size() * (simulador.getCantFiguritas() * simulador.getUsuarios().size()));
 
-		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " Paquetes: " + paquetesGenerados()
-				+ " Paquetes totales: " + totalPaquetesGenerados() + " Promedio: "
+		label.setText("Simulacion: " + simulador.getNumeroSimulacion() + " - Paquetes: " + paquetesGenerados()
+				+ " - Paquetes totales: " + totalPaquetesGenerados() + " - Promedio: "
 				+ totalPaquetesGenerados() / listaSimulaciones.size());
 
 		barra.setValue(total());
@@ -39,14 +39,6 @@ public class ObservadorPorInterfaz implements Observador {
 
 	public void settear(int i) {
 		this.simulador = listaSimulaciones.get(i);
-	}
-
-	private int acertadas() {
-		int tot = 0;
-		for (Usuario u : simulador.getUsuarios()) {
-			tot = tot + u.getFiguritasAcertadas();
-		}
-		return tot;
 	}
 
 	private int total() {

@@ -1,4 +1,4 @@
-package codigoNegocio;
+package simuladores;
 
 import java.util.ArrayList;
 
@@ -22,14 +22,8 @@ public class Simulador {
 	public void simular() {
 
 		while (!todosCompletos()) {
-//				try {
-//					Thread.sleep(50);
 			getEscenario().simular(generador, getUsuarios());
-			// notificarObservadores();
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
 		}
 
 	}
@@ -75,10 +69,5 @@ public class Simulador {
 			i = i + u.getPaquetes();
 		return i;
 	}
-
-//	@Override
-//	public void run() {
-//		simular();
-//	}
 
 }

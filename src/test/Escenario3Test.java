@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import codigoNegocio.Instancia;
-import codigoNegocio.Usuario;
 import escenarios.Escenario3;
 import generador.GeneradorPrefijado;
+import simuladores.Instancia;
+import simuladores.Usuario;
 
 public class Escenario3Test {
 	

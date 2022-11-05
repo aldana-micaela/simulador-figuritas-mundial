@@ -2,8 +2,8 @@ package escenarios;
 
 import java.util.ArrayList;
 
-import codigoNegocio.Usuario;
 import generador.Generador;
+import simuladores.Usuario;
 
 public class Escenario2 implements Escenario {
 
