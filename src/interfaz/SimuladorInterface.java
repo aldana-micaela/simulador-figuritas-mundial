@@ -109,16 +109,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		eventoBotonGrafico();
 
 	}
-
-	private void crearBotonGrafico() {
-		btnVerGrafico = new JButton("Ver Grafico");
-		btnVerGrafico.setFont(new Font("Consolas", Font.BOLD, 15));
-
-		btnVerGrafico.setBounds(311, 179, 191, 54);
-		panel.add(btnVerGrafico);
-
-	}
-
+	
 	private void crearFrame() {
 		frame = new JFrame("Simulador");
 		frame.setBounds(350, 150, 809, 288);
@@ -126,7 +117,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-
+	
 	private void crearPanel() {
 		panel = new JPanel();
 		panel.setForeground(new Color(255, 255, 255));
@@ -134,6 +125,15 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 		panel.setBounds(10, 10, 604, 497);
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
+		
+	}
+
+	private void crearBotonGrafico() {
+		btnVerGrafico = new JButton("Ver Grafico");
+		btnVerGrafico.setFont(new Font("Consolas", Font.BOLD, 15));
+
+		btnVerGrafico.setBounds(311, 179, 191, 54);
+		panel.add(btnVerGrafico);
 
 	}
 
@@ -233,4 +233,7 @@ public class SimuladorInterface extends SwingWorker<Integer, Integer> {
 
 		return null;
 	}
+
+
+
 }

@@ -14,6 +14,7 @@ public class GeneradorPrefijado implements Generador {
 	public void setMatrizDePaquetes(int[][] matriz) {
 
 		columna = 0;
+		fila=0;
 		this.matrizDePaquetes = matriz;
 
 	}
