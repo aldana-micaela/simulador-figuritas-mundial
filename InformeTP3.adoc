@@ -70,7 +70,7 @@ Instancia:: Esta clase contiene las instancias de datos.
 Solucion:: Esta clase hereda la clase Thread
 `void ejecutar()` esta ejecuta las simualciones que estan dentro de la lista y setea la simulacion que se esta ejecutando para mostrar los datos en la interfaz notifica a los observadores.
 `void registrarObservador(Observador o)` Registra unobservador a lista.
-`void run()`
+`void run()` Metodo a implemantar de Thread
 Usuario:: Esta clase contiene un álbum que es un arreglo de booleanos.
 `boolean estaCompleto()` Este método devuelve true en el caso de que el álbum esté completo
 `void agregarFigurita(int i)` Este método agrega figuritas al álbum
