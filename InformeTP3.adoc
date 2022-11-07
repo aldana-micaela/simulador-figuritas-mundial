@@ -24,3 +24,26 @@ de simulaciones hasta llegar a una estimación (promedio de los paquetes comprad
        cuando todos los usuarios completaron sus álbumes.
     3. Una cantidad n de usuarios que buscan completar un álbum cada uno. Cuando dos usuarios obtienen una figurita repetida cada uno, las 
        pueden intercambiar entre sí. El proceso termina cuando todos los usuarios completaron sus álbumes.
+
+== Desarrollo:
+=== Paquetes:
+Para la implementación de esta aplicación se crearon los siguientes paquetes:
+
+*escenarios*: Contiene la lógica de cada escenario mencionado.
+
+*interfaz*: Contiene la interfaz gráfica de la aplicación.
+
+*generadores*: Contiene los generadores para generar los paquetes.
+
+*observadores*: Contiene los observadores para la interfaz.
+
+*simuladores*: Contiene las instancias y la logica de la simulación
+
+*test*: Este paquete contiene los test de las clases que están en los paquetes escenario y simuladores.
+
+== Descripcion de las clases de escenarios:
+Escenario::  están los métodos que hay que implementar en las clases que van llevar a cabo las siguientes clases:
+Escenario1:: 
+Escenario2::
+Escenario3::
+`void leerArchivoYAgregarCoordenadas()`
