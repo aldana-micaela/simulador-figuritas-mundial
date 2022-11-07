@@ -12,20 +12,18 @@ import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 import escenarios.Escenario;
-import generador.Generador;
-import generador.GeneradorRandom;
+
 import observador.Observador;
 import observador.ObservadorGrafico;
 import observador.ObservadorPorInterfaz;
-import simuladores.Instancia;
-import simuladores.Simulador;
+
 import simuladores.Solucion;
-import simuladores.Usuario;
+
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;

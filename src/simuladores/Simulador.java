@@ -2,9 +2,10 @@ package simuladores;
 
 import java.util.ArrayList;
 
+
 import escenarios.Escenario;
 import generador.Generador;
-import observador.Observador;
+
 
 public class Simulador {
 
