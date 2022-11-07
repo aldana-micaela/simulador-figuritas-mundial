@@ -38,7 +38,7 @@ public class Solucion extends Thread {
 				Thread.sleep(100);
 				lista.get(i).simular();
 
-				System.out.println(lista.get(i).paquetesGenerados());
+				System.out.println("simulacion: " + lista.get(i).getNumeroSimulacion() + " - paquetes generados: " +  lista.get(i).paquetesGenerados());
 
 				settearObservador(i);
 				notificarObservadores();
