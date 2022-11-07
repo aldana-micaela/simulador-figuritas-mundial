@@ -46,4 +46,37 @@ Escenario::  están los métodos que hay que implementar en las clases que van l
 Escenario1:: 
 Escenario2::
 Escenario3::
-`void leerArchivoYAgregarCoordenadas()`
+En estas clases contiene la logica para generar un paquete y en donde se pueden cambiar o intercambiar figuritas en el caso de ser posible.
+`void generarPaquete(Usuario u, Generador g)` este método genera las figuritas por paquete y las agrega al usuario.
+
+`void simular(Generador g, ArrayList<Usuario> lista)` este método se encarga de que todos los usuarios obtengas paquetes hasta que tengan el albumn completo
+
+== Descripcion de las clases de Generadores:
+Generador::
+GeneradorPrefijado::
+
+`int nextInt(int rango)`
+`boolean nextBoolean()`
+` void setMatrizDePaquetes(int[][] matriz)`
+GeneradorRandom::
+`int nextInt(int rango)`
+`boolean nextBoolean()`
+
+== Descripcion de las clases de Simuladores:
+Simulador:: Esta clase
+`void simular()`  se encarga de simular en base al escenario elegido.
+`int paquetesGenerados()` se encarga de devolver la cantidad de paquetes que se generaron por simulación.
+Instancia:: Esta clase contiene las instancias de datos.
+Solucion::
+`void ejecutar()`
+`void registrarObservador(Observador o)`
+`void run()`
+Usuario:: Esta clase contiene un álbum que es un arreglo de booleanos.
+`boolean estaCompleto() ` Este metodo devuelve true en el caso de que el álbum esté completo
+`void agregarFigurita(int i)` agrega figuritas al álbum
+ 
+
+``
+``
+``
+``
