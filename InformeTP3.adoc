@@ -68,7 +68,7 @@ Simulador:: Esta clase se encarga de realizar la simulación.
 `int paquetesGenerados()` se encarga de devolver la cantidad de paquetes que se generaron por simulación.
 Instancia:: Esta clase contiene las instancias de datos.
 Solucion:: Esta clase hereda la clase Thread
-`void ejecutar()`
+`void ejecutar()` esta ejecuta las simualciones que estan dentro de la lista y setea la simulacion que se esta ejecutando para mostrar los datos en la interfaz notifica a los observadores.
 `void registrarObservador(Observador o)` Registra unobservador a lista.
 `void run()`
 Usuario:: Esta clase contiene un álbum que es un arreglo de booleanos.
