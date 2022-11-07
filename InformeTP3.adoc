@@ -77,4 +77,4 @@ Usuario:: Esta clase contiene un álbum que es un arreglo de booleanos.
 
 == Problemas y soluciones:
 El primer problema que se nos presentó fue que al querer implementar el escenario2 las figuritas nunca se intercambiaban porque hasta que el primer usuario no terminaba de completar su álbum, el segundo no empezaba a generar figuritas. La solución fue intercalar entre usuarios. 
-Otro problema que tuvimos fue el intentar hacer las simulaciones, ya que en primer lugar solo hacia una y la solución fue
+Otro problema que tuvimos fue el intentar hacer las simulaciones, ya que en primer lugar solo hacia una y la solución fue 
