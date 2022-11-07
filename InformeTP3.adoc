@@ -57,7 +57,7 @@ GeneradorPrefijado::
 
 `int nextInt(int rango)`
 `boolean nextBoolean()`
-` void setMatrizDePaquetes(int[][] matriz)`
+`void setMatrizDePaquetes(int[][] matriz)`
 GeneradorRandom::
 `int nextInt(int rango)`
 `boolean nextBoolean()`
