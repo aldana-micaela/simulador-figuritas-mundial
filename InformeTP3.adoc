@@ -52,7 +52,7 @@ En estas clases contiene la logica para generar un paquete y en donde se pueden 
 `void simular(Generador g, ArrayList<Usuario> lista)` este método se encarga de que todos los usuarios obtengas paquetes hasta que tengan el albumn completo
 
 == Descripcion de las clases de Generadores:
-Generador::
+Generador:: están los métodos que hay que implementar en las clases que van llevar a cabo las siguientes clases:
 GeneradorPrefijado::
 
 `int nextInt(int rango)`
@@ -63,20 +63,18 @@ GeneradorRandom::
 `boolean nextBoolean()`
 
 == Descripcion de las clases de Simuladores:
-Simulador:: Esta clase
+Simulador:: Esta clase se encarga de realizar la simulación.
 `void simular()`  se encarga de simular en base al escenario elegido.
 `int paquetesGenerados()` se encarga de devolver la cantidad de paquetes que se generaron por simulación.
 Instancia:: Esta clase contiene las instancias de datos.
-Solucion::
+Solucion:: Esta clase hereda la clase Thread
 `void ejecutar()`
-`void registrarObservador(Observador o)`
+`void registrarObservador(Observador o)` Registra unobservador a lista.
 `void run()`
 Usuario:: Esta clase contiene un álbum que es un arreglo de booleanos.
-`boolean estaCompleto() ` Este metodo devuelve true en el caso de que el álbum esté completo
-`void agregarFigurita(int i)` agrega figuritas al álbum
- 
+`boolean estaCompleto()` Este método devuelve true en el caso de que el álbum esté completo
+`void agregarFigurita(int i)` Este método agrega figuritas al álbum
 
-``
-``
-``
-``
+== Problemas y soluciones:
+El primer problema que se nos presentó fue que al querer implementar el escenario2 las figuritas nunca se intercambiaban porque hasta que el primer usuario no terminaba de completar su álbum, el segundo no empezaba a generar figuritas. La solución fue intercalar entre usuarios. 
+Otro problema que tuvimos fue el intentar hacer las simulaciones, ya que en primer lugar solo hacia una y la solución fue
