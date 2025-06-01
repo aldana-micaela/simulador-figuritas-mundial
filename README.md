@@ -41,9 +41,13 @@ Este proyecto es una simulación estadística desarrollada en **Java**, cuyo obj
 
 src/
 ├── escenarios/ # Escenarios de simulación (Escenario1, Escenario2, etc.)
+
 ├── generador/ # Generación de paquetes de figuritas
+
 ├── interfaz/ # Interfaz gráfica con Swing
+
 ├── observador/ # Implementación del patrón Observer
+
 ├── Simulador.java # Clase principal
 
 
