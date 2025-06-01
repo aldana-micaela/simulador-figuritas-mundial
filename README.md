@@ -40,6 +40,7 @@ Este proyecto es una simulación estadística desarrollada en **Java**, cuyo obj
 ## 📁 Estructura del proyecto
 
 src/
+
 ├── escenarios/ # Escenarios de simulación (Escenario1, Escenario2, etc.)
 
 ├── generador/ # Generación de paquetes de figuritas
