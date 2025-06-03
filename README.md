@@ -14,6 +14,15 @@ Este proyecto es una simulación estadística desarrollada en **Java**, cuyo obj
 ---
 
 ## ⚙️ Tecnologías y conceptos aplicados
+- **Java** (POO)
+- **Interfaces**
+- **Enum**
+- **Observador (Observer Pattern)**
+- **Java Swing** (Interfaz gráfica)
+- **JUnit** (Pruebas unitarias)
+- **Manejo de excepciones**
+- **Colecciones (List, Set, Map)**
+- **Lógica de simulación probabilística**
 
 ### 🖥️ Lenguaje:
 - **Java** (JDK 8+)
@@ -23,6 +32,14 @@ Este proyecto es una simulación estadística desarrollada en **Java**, cuyo obj
 - **Java Swing**: 
   - Uso de componentes como `JFrame`, `JPanel`, `JButton`, `JLabel`, entre otros.
   - Clases destacadas: `SimuladorInterface.java`, `Menu.java`.
+ 
+## 🧪 Pruebas unitarias
+Se implementaron pruebas unitarias utilizando **JUnit** para validar:
+
+- El comportamiento del álbum (registro, duplicados, llenado).
+- La lógica de creación de paquetes y selección aleatoria de figuritas.
+- El control de estadísticas de simulación.
+
 
 ### 🔁 Principios de diseño y patrones:
 - **Interfaces Java**:
@@ -38,21 +55,14 @@ Este proyecto es una simulación estadística desarrollada en **Java**, cuyo obj
 ---
 
 ## 📁 Estructura del proyecto
-
+```
 src/
-
 ├── escenarios/ # Escenarios de simulación (Escenario1, Escenario2, etc.)
-
 ├── generador/ # Generación de paquetes de figuritas
-
 ├── interfaz/ # Interfaz gráfica con Swing
-
 ├── observador/ # Implementación del patrón Observer
-
 ├── Simulador.java # Clase principal
-
-
-
+```
 ---
 
 ## 📄 Documentación
